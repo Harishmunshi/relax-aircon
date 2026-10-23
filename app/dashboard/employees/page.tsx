@@ -17,10 +17,6 @@ const statusColors: Record<string, { bg: string; text: string }> = {
 }
 
 export default function EmployeesPage() {
-  const [authed, setAuthed] = useState(false)
-  const [pw, setPw] = useState('')
-  const [pwErr, setPwErr] = useState(false)
-
   const [employees, setEmployees] = useState<EmployeeRow[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(false)
@@ -56,11 +52,11 @@ export default function EmployeesPage() {
     setLoading(false)
   }, [page, search, filterRole, filterStatus])
 
-  useEffect(() => { if (authed) fetchEmployees() }, [authed, fetchEmployees])
+  useEffect(() => { fetchEmployees() }, [fetchEmployees])
 
   // Debounce search
   useEffect(() => {
-    const t = setTimeout(() => { setPage(1); if (authed) fetchEmployees() }, 350)
+    const t = setTimeout(() => { setPage(1); fetchEmployees() }, 350)
     return () => clearTimeout(t)
   }, [search]) // eslint-disable-line
 
@@ -79,25 +75,6 @@ export default function EmployeesPage() {
   }
 
   const totalPages = Math.ceil(total / limit)
-
-  // ── Login Gate ─────────────────────────────────────────────────────────────
-  if (!authed) return (
-    <div style={{ minHeight: '100vh', background: C.dark, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-      <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 24, padding: 40, maxWidth: 360, width: '100%', textAlign: 'center' }}>
-        <div style={{ fontSize: '3rem', marginBottom: 12 }}>👥</div>
-        <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.8rem', color: C.white, marginBottom: 6 }}>Staff Panel</h1>
-        <p style={{ color: C.muted, fontSize: '0.82rem', marginBottom: 28 }}>Admin access required</p>
-        <input type="password" placeholder="Admin password" value={pw}
-          onChange={e => setPw(e.target.value)} onKeyDown={e => e.key === 'Enter' && (pw === 'admin123' ? (setAuthed(true), setPwErr(false)) : setPwErr(true))}
-          style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: `1px solid ${pwErr ? C.err : C.border}`, color: C.white, borderRadius: 12, padding: '12px 16px', fontSize: '1rem', outline: 'none', textAlign: 'center', fontFamily: 'inherit', marginBottom: 8 }} />
-        {pwErr && <p style={{ color: C.err, fontSize: '0.8rem', marginBottom: 8 }}>Wrong password</p>}
-        <button onClick={() => pw === 'admin123' ? (setAuthed(true), setPwErr(false)) : setPwErr(true)}
-          style={{ width: '100%', background: 'linear-gradient(135deg,#00d4ff,#0099cc)', color: C.dark, fontWeight: 700, padding: 14, borderRadius: 50, border: 'none', fontSize: '1rem', cursor: 'pointer', fontFamily: 'inherit', marginTop: 6 }}>
-          Enter →
-        </button>
-      </div>
-    </div>
-  )
 
   // ── Detail Drawer ──────────────────────────────────────────────────────────
   const Drawer = () => {
@@ -170,9 +147,6 @@ export default function EmployeesPage() {
           <a href="/dashboard/employees/register" style={{ background: 'linear-gradient(135deg,#00d4ff,#0099cc)', color: C.dark, fontWeight: 700, padding: '9px 20px', borderRadius: 50, textDecoration: 'none', fontSize: '0.82rem' }}>
             + Register Employee
           </a>
-          <button onClick={() => setAuthed(false)} style={{ background: 'none', border: `1px solid ${C.border}`, color: C.muted, padding: '8px 16px', borderRadius: 50, cursor: 'pointer', fontSize: '0.8rem', fontFamily: 'inherit' }}>
-            Logout
-          </button>
         </div>
       </div>
 

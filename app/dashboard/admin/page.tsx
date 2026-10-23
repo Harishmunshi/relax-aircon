@@ -14,9 +14,6 @@ const TECHS = [
 ]
 
 export default function AdminDashboard() {
-  const [authed, setAuthed] = useState(false)
-  const [pw, setPw] = useState('')
-  const [err, setErr] = useState(false)
   const [bookings, setBookings] = useState(BOOKINGS)
   const [tab, setTab] = useState('overview')
 
@@ -27,25 +24,9 @@ export default function AdminDashboard() {
     completed: bookings.filter(b => b.status === 'completed').length,
   }
 
-  const login = () => pw === 'admin123' ? (setAuthed(true), setErr(false)) : setErr(true)
   const updateStatus = (id: string, status: string) => setBookings(p => p.map(b => b.id === id ? { ...b, status } : b))
 
   const C = { dark: '#020c18', card: 'rgba(7,30,52,0.8)', border: 'rgba(0,180,255,0.15)', ice: '#00d4ff', muted: '#7ba8c4', white: '#f0f8ff' }
-
-  if (!authed) return (
-    <div style={{ minHeight: '100vh', background: C.dark, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-      <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 24, padding: 40, width: '100%', maxWidth: 380, textAlign: 'center' }}>
-        <div style={{ fontSize: '3rem', marginBottom: 16 }}>🔐</div>
-        <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '2rem', color: C.white, marginBottom: 8 }}>Admin Login</h1>
-        <p style={{ color: C.muted, fontSize: '0.85rem', marginBottom: 32 }}>Relax Aircon — Owner Panel</p>
-        <input type="password" placeholder="Enter password" value={pw} onChange={e => setPw(e.target.value)} onKeyDown={e => e.key === 'Enter' && login()}
-          style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: `1px solid ${err ? '#ff6b6b' : C.border}`, color: C.white, borderRadius: 12, padding: '12px 16px', fontSize: '1rem', outline: 'none', textAlign: 'center', marginBottom: 8, fontFamily: 'inherit' }} />
-        {err && <p style={{ color: '#ff6b6b', fontSize: '0.8rem', marginBottom: 8 }}>Wrong password. Try: admin123</p>}
-        <button onClick={login} style={{ width: '100%', background: 'linear-gradient(135deg,#00d4ff,#0099cc)', color: C.dark, fontWeight: 700, padding: 14, borderRadius: 50, border: 'none', fontSize: '1rem', cursor: 'pointer', fontFamily: 'inherit', marginTop: 8 }}>Login →</button>
-        <p style={{ color: 'rgba(123,168,196,0.4)', fontSize: '0.75rem', marginTop: 16 }}>Demo: admin123</p>
-      </div>
-    </div>
-  )
 
   return (
     <div style={{ minHeight: '100vh', background: C.dark, color: C.white }}>
@@ -54,9 +35,9 @@ export default function AdminDashboard() {
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.2rem', fontWeight: 600 }}>❄️ Relax Aircon — Admin</div>
           <div style={{ color: C.muted, fontSize: '0.75rem' }}>Welcome, Azhar Munshi</div>
         </div>
-        <button onClick={() => setAuthed(false)} style={{ background: 'none', border: `1px solid ${C.border}`, color: C.muted, padding: '6px 16px', borderRadius: 50, cursor: 'pointer', fontSize: '0.8rem', fontFamily: 'inherit' }}>Logout</button>
       </div>
 
+      <div style={{ background: '#fbf4e2', color: '#6b4a00', padding: '10px 24px', fontSize: '0.85rem' }}>Sample data. Bookings are not connected to a database yet, so changes here are not saved.</div>
       <div style={{ padding: 24 }}>
         {/* Stats */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 24 }}>

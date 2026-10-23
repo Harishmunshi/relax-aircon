@@ -1,23 +1,45 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import ServicesPreview from '@/components/ServicesPreview'
+import { PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'AC Services in Vadodara | Repair, Installation, Gas Refill — Relax Aircon',
-  description: 'Complete AC services in Vadodara: repair, installation, gas refill, fridge repair, washing machine. Best prices. Call +91 70432 45355',
+  title: 'AC, Fridge and Washing Machine Services in Vadodara',
+  description:
+    'AC repair, service, installation and gas refill in Vadodara, plus fridge, washing machine, deep freezer and central AC work. Starting prices listed.',
+  alternates: { canonical: '/services' },
 }
+
+const notes = [
+  'Prices shown are labour starting rates for a standard unit.',
+  'Spare parts and gas are charged separately and quoted to you before work starts.',
+  'No hidden charges: the price you agree to is the price you pay.',
+  'All repairs carry a 90 day warranty.',
+]
 
 export default function ServicesPage() {
   return (
-    <main style={{ paddingTop: 80 }}>
-      <div style={{ padding: '60px 60px 20px', background: '#041525' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <span style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase' as const, color: '#00d4ff', display: 'block', marginBottom: 12 }}>All Services</span>
-          <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 300, color: '#f0f8ff' }}>
-            AC Services in <strong style={{ fontWeight: 700, color: '#00d4ff' }}>Vadodara</strong>
-          </h1>
+    <main className="section page-top">
+      <div className="wrap">
+        <span className="eyebrow">Services</span>
+        <h1>Appliance services in Vadodara</h1>
+        <p className="lead" style={{ marginBottom: 36 }}>
+          Everything we work on, with starting prices. Not sure what you need? Call{' '}
+          <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a> and describe the problem.
+        </p>
+        <ServicesPreview />
+        <div className="two-col" style={{ marginTop: 48 }}>
+          <div>
+            <h2>How pricing works</h2>
+            <ul className="plain-list muted">{notes.map(n => <li key={n}>{n}</li>)}</ul>
+          </div>
+          <div className="panel">
+            <h2 style={{ fontSize: '1.3rem' }}>Ready to book?</h2>
+            <p className="muted">Pick a slot online and we will call to confirm.</p>
+            <Link href="/book" className="btn btn-primary">Book a visit</Link>
+          </div>
         </div>
       </div>
-      <ServicesPreview />
     </main>
   )
 }

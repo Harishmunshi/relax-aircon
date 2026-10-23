@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerSupabase } from '@/lib/supabase-server'
+import { createServerSupabase, notConfigured, UUID_RE, EMPLOYEE_STATUSES, intOrNull } from '@/lib/supabase-server'
+import { ROLES } from '@/lib/employee-types'
+
+const ROLE_VALUES: string[] = ROLES.map(r => r.value)
 
 export async function GET(
   _req: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  if (!UUID_RE.test(params.id)) return NextResponse.json({ error: 'Employee not found' }, { status: 404 })
   const db = createServerSupabase()
+  if (!db) return notConfigured()
 
   const { data, error } = await db
     .from('employees')
@@ -28,18 +33,41 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const body = await req.json()
-  const allowed = ['status', 'role', 'expected_salary', 'experience_years']
-  const updates: Record<string, unknown> = {}
+  if (!UUID_RE.test(params.id)) return NextResponse.json({ error: 'Employee not found' }, { status: 404 })
 
-  for (const key of allowed) {
-    if (key in body) updates[key] = body[key]
+  let body: Record<string, unknown>
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+  }
+  if (!body || typeof body !== 'object') return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+
+  const updates: Record<string, unknown> = {}
+  if ('status' in body) {
+    if (!(EMPLOYEE_STATUSES as readonly unknown[]).includes(body.status)) return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
+    updates.status = body.status
+  }
+  if ('role' in body) {
+    if (body.role !== null && !ROLE_VALUES.includes(body.role as string)) return NextResponse.json({ error: 'Invalid role' }, { status: 400 })
+    updates.role = body.role
+  }
+  if ('expected_salary' in body) {
+    const v = intOrNull(body.expected_salary, 0, 10_000_000)
+    if (v === undefined) return NextResponse.json({ error: 'Invalid expected_salary' }, { status: 400 })
+    updates.expected_salary = v
+  }
+  if ('experience_years' in body) {
+    const v = intOrNull(body.experience_years, 0, 50)
+    if (v === undefined) return NextResponse.json({ error: 'Invalid experience_years' }, { status: 400 })
+    updates.experience_years = v
   }
 
   if (Object.keys(updates).length === 0)
     return NextResponse.json({ error: 'No valid fields to update' }, { status: 400 })
 
   const db = createServerSupabase()
+  if (!db) return notConfigured()
   const { data, error } = await db
     .from('employees')
     .update(updates)

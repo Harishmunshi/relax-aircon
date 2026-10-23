@@ -10,34 +10,9 @@ const JOBS = [
 const C = { dark: '#020c18', card: 'rgba(7,30,52,0.8)', border: 'rgba(0,180,255,0.15)', ice: '#00d4ff', muted: '#7ba8c4', white: '#f0f8ff' }
 
 export default function TechnicianDashboard() {
-  const [authed, setAuthed] = useState(false)
-  const [id, setId] = useState('')
-  const [pw, setPw] = useState('')
-  const [err, setErr] = useState(false)
   const [jobs, setJobs] = useState(JOBS)
 
-  const login = () => {
-    if (id === 'TECH001' && pw === 'tech123') { setAuthed(true); setErr(false) }
-    else setErr(true)
-  }
   const update = (jobId: string, status: string) => setJobs(p => p.map(j => j.id === jobId ? { ...j, status } : j))
-
-  if (!authed) return (
-    <div style={{ minHeight: '100vh', background: C.dark, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-      <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 24, padding: 40, width: '100%', maxWidth: 380, textAlign: 'center' }}>
-        <div style={{ fontSize: '3rem', marginBottom: 16 }}>🔧</div>
-        <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2rem', color: C.white, marginBottom: 8 }}>Technician Login</h1>
-        <p style={{ color: C.muted, fontSize: '0.85rem', marginBottom: 32 }}>Relax Aircon — Field App</p>
-        <input placeholder="Technician ID" value={id} onChange={e => setId(e.target.value)}
-          style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: `1px solid ${err ? '#ff6b6b' : C.border}`, color: C.white, borderRadius: 12, padding: '12px 16px', fontSize: '1rem', outline: 'none', textAlign: 'center', marginBottom: 10, fontFamily: 'inherit' }} />
-        <input type="password" placeholder="Password" value={pw} onChange={e => setPw(e.target.value)} onKeyDown={e => e.key === 'Enter' && login()}
-          style={{ width: '100%', background: 'rgba(255,255,255,0.06)', border: `1px solid ${err ? '#ff6b6b' : C.border}`, color: C.white, borderRadius: 12, padding: '12px 16px', fontSize: '1rem', outline: 'none', textAlign: 'center', marginBottom: 8, fontFamily: 'inherit' }} />
-        {err && <p style={{ color: '#ff6b6b', fontSize: '0.8rem', marginBottom: 8 }}>Invalid. Try TECH001 / tech123</p>}
-        <button onClick={login} style={{ width: '100%', background: 'linear-gradient(135deg,#00d4ff,#0099cc)', color: C.dark, fontWeight: 700, padding: 14, borderRadius: 50, border: 'none', fontSize: '1rem', cursor: 'pointer', fontFamily: 'inherit', marginTop: 8 }}>Login →</button>
-        <p style={{ color: 'rgba(123,168,196,0.4)', fontSize: '0.75rem', marginTop: 16 }}>Demo: TECH001 / tech123</p>
-      </div>
-    </div>
-  )
 
   const pending = jobs.filter(j => j.status === 'assigned')
   const done = jobs.filter(j => j.status === 'completed')
@@ -51,10 +26,10 @@ export default function TechnicianDashboard() {
         </div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           <span style={{ fontSize: '0.7rem', background: 'rgba(16,185,129,0.15)', color: '#10b981', padding: '4px 12px', borderRadius: 50 }}>● Available</span>
-          <button onClick={() => setAuthed(false)} style={{ background: 'none', border: `1px solid ${C.border}`, color: C.muted, padding: '6px 16px', borderRadius: 50, cursor: 'pointer', fontSize: '0.8rem', fontFamily: 'inherit' }}>Logout</button>
         </div>
       </div>
 
+      <div style={{ background: '#fbf4e2', color: '#6b4a00', padding: '10px 24px', fontSize: '0.85rem' }}>Sample data. Jobs are not connected to a database yet, so changes here are not saved.</div>
       <div style={{ padding: 24 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 28 }}>
           {[['Today\'s Jobs', jobs.length, C.ice], ['Pending', pending.length, '#f59e0b'], ['Completed', done.length, '#10b981']].map(([l, v, c]) => (

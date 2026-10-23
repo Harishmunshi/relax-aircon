@@ -66,6 +66,7 @@ ALTER TABLE employees ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "service_role_all" ON employees
   FOR ALL USING (auth.role() = 'service_role');
 
--- Policy: authenticated users can read active employees
-CREATE POLICY "authenticated_read" ON employees
-  FOR SELECT USING (auth.role() = 'authenticated' AND status = 'active');
+-- No policy for anon/authenticated roles: the browser never reads this table directly.
+-- All access goes through staff-only API routes using the service_role key.
+-- If you created the old policy earlier, remove it:
+DROP POLICY IF EXISTS "authenticated_read" ON employees;

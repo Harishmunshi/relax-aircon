@@ -1,28 +1,31 @@
-# Relax Aircon Website
+# Relax Aircon
 
-Owner: Azhar Munshi | +91 70432 45355 | Vadodara, Gujarat
+Website for Relax Aircon, AC, fridge and washing machine service in Vadodara. Live at https://www.relaxaircon.in
 
-## Quick Start
+Next.js 14 (App Router), deployed on Vercel.
 
-```bash
-npm install
-npm run dev
-```
-Open: http://localhost:3000
+## Setup
 
-## Pages
-- `/` — Home
-- `/services` — All services  
-- `/book` — Booking form
-- `/about` — About us
-- `/contact` — Contact
-- `/dashboard/admin` — Admin panel (password: admin123)
-- `/dashboard/technician` — Tech panel (TECH001 / tech123)
+1. `npm install`
+2. Copy `.env.example` to `.env.local` and fill in the values.
+3. `npm run dev`
 
-## Deploy to Vercel (FREE)
-1. Push to GitHub
-2. Go to vercel.com → Import repo → Deploy
-3. Add env vars from .env.local
+## Environment variables (set these in Vercel too)
 
-## Supabase Setup
-Edit `.env.local` with your Supabase project URL and anon key.
+| Variable | Needed for |
+| --- | --- |
+| `SESSION_SECRET` | Staff login. Random, 32+ characters (`openssl rand -hex 32`). |
+| `ADMIN_PASSWORD` | Owner login at `/login`. 8+ characters, use a long passphrase. |
+| `TECH_PASSWORD` | Technician login. Optional. |
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` | Employee records. |
+| `AADHAAR_ENCRYPTION_KEY` | Encrypting Aadhaar numbers (64 hex chars). |
+
+Without `SESSION_SECRET` and `ADMIN_PASSWORD`, staff login stays disabled. Without the Supabase keys, the employee API returns 503.
+
+## Structure
+
+- `lib/site.ts`: phone number, hours, services, prices and areas. Edit business details here.
+- `middleware.ts` and `lib/auth.ts`: protect `/dashboard/*` and `/api/*` with a signed session cookie.
+- `app/robots.ts`, `app/sitemap.ts`: SEO files.
+- `public/google6ae2d81557a24664.html`: Google Search Console verification. Do not delete.
+- Bookings are sent to the owner's WhatsApp with the details filled in. The admin and technician dashboards still show sample data.
