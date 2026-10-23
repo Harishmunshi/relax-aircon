@@ -97,6 +97,28 @@ img { max-width: 100%; display: block; }
 .price-table th { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); }
 .price-table tr:last-child td { border-bottom: 0; }
 
+/* 3D AC unit (hero) */
+.ac-stage { display: flex; justify-content: center; padding: 16px 0 130px; }
+.ac-unit { position: relative; width: 380px; height: 160px; transform: perspective(1000px) rotateX(10deg) rotateY(-15deg); animation: acFloat 4s ease-in-out infinite; filter: drop-shadow(0 30px 40px rgba(21, 33, 44, 0.25)); }
+.ac-body { width: 380px; height: 160px; background: linear-gradient(160deg, #1a3a5c 0%, #0d2540 40%, #091c34 100%); border-radius: 20px; border: 1px solid rgba(0, 180, 255, 0.3); position: relative; overflow: hidden; box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.1); }
+.ac-screen { position: absolute; top: 20px; left: 24px; width: 100px; height: 56px; background: linear-gradient(135deg, #001a2e, #002a44); border-radius: 8px; border: 1px solid rgba(0, 180, 255, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.ac-temp { font-size: 1.4rem; font-weight: 700; color: #00d4ff; text-shadow: 0 0 10px #00d4ff; letter-spacing: -1px; line-height: 1; }
+.ac-mode { font-size: 0.55rem; color: rgba(0, 212, 255, 0.6); letter-spacing: 2px; text-transform: uppercase; }
+.ac-vents { position: absolute; top: 50%; right: 24px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 5px; }
+.ac-vent { width: 200px; height: 3px; background: linear-gradient(90deg, transparent, rgba(0, 180, 255, 0.4), transparent); border-radius: 2px; position: relative; overflow: hidden; }
+.ac-vent-glow { position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8), transparent); animation: ventGlow 2s ease-in-out infinite; }
+.ac-leds { position: absolute; bottom: 18px; left: 24px; display: flex; gap: 8px; }
+.ac-led { width: 6px; height: 6px; border-radius: 50%; animation: ledBlink 2s ease-in-out infinite; }
+.ac-brand { position: absolute; bottom: 16px; right: 24px; font-family: var(--font-serif), Georgia, serif; font-size: 0.9rem; font-weight: 600; color: rgba(0, 180, 255, 0.5); letter-spacing: 3px; text-transform: uppercase; }
+.ac-flap { position: absolute; bottom: -14px; left: 10%; right: 10%; height: 14px; background: linear-gradient(180deg, #0d2540, #071828); border-radius: 0 0 10px 10px; border: 1px solid rgba(0, 180, 255, 0.15); border-top: none; }
+.ac-air { position: absolute; bottom: -20px; left: 0; right: 0; height: 120px; display: flex; justify-content: space-around; transform: translateY(100%); pointer-events: none; }
+.ac-air-line { width: 2px; background: linear-gradient(180deg, rgba(28, 78, 137, 0.5), transparent); border-radius: 2px; animation: coldFlow 1.5s ease-in-out infinite; }
+@keyframes acFloat { 0%, 100% { transform: perspective(1000px) rotateX(10deg) rotateY(-15deg) translateY(0); } 50% { transform: perspective(1000px) rotateX(10deg) rotateY(-15deg) translateY(-15px); } }
+@keyframes ventGlow { 0% { left: -100%; } 100% { left: 200%; } }
+@keyframes ledBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes coldFlow { 0% { height: 0; opacity: 0; } 50% { height: 80px; opacity: 0.8; } 100% { height: 120px; opacity: 0; } }
+@media (max-width: 440px) { .ac-stage { transform: scale(0.8); transform-origin: top center; margin-bottom: -30px; } }
+
 /* Services */
 .service-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--line); }
 .service { padding: 28px 24px 28px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 80px; }

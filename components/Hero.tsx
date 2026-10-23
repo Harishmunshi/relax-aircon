@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { PHONE_DISPLAY, PHONE_TEL, FOUNDED } from '@/lib/site'
+import AcUnit from '@/components/AcUnit'
 
 const quickPrices: [string, string][] = [
   ['AC service', '₹350+'],
@@ -32,7 +33,9 @@ export default function Hero() {
             <li><strong>Emergency calls</strong> taken 24/7</li>
           </ul>
         </div>
-        <aside className="panel" aria-labelledby="price-heading">
+        <div>
+          <AcUnit />
+          <aside className="panel" aria-labelledby="price-heading">
           <h2 id="price-heading" style={{ fontSize: '1.25rem' }}>Starting prices</h2>
           <table className="price-table">
             <thead><tr><th scope="col">Service</th><th scope="col">From</th></tr></thead>
@@ -46,7 +49,8 @@ export default function Hero() {
             Spare parts and gas are charged separately. We confirm the full cost after inspection, before any work.{' '}
             <Link href="/services">See all prices</Link>
           </p>
-        </aside>
+          </aside>
+        </div>
       </div>
     </section>
   )
