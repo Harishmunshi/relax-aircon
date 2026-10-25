@@ -256,7 +256,7 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: 'inverter-vs-non-inverter-ac',
-    title: 'Inverter vs Non-Inverter AC: Which to Buy in Vadodara',
+    title: 'Inverter vs Non-Inverter AC: Which to Buy',
     description: 'Inverter or non-inverter AC? The difference in running cost, cooling and repair, and which suits a Vadodara home or shop.',
     h1: 'Inverter vs non-inverter AC: which should you buy?',
     intro: 'The difference is how the compressor runs. A non-inverter AC switches the compressor fully on and off. An inverter AC changes the compressor speed to hold the temperature, which saves electricity when it runs for long hours.',

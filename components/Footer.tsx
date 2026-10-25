@@ -2,8 +2,9 @@ import Link from 'next/link'
 import PublicOnly from '@/components/PublicOnly'
 import { LANDING_PAGES } from '@/lib/landing'
 import { GUIDES } from '@/lib/guides'
+import { AREA_PAGES } from '@/lib/areas'
 import {
-  AREAS, HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, FOUNDED, MAPS_LINK, whatsappLink,
+  HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, FOUNDED, MAPS_LINK, whatsappLink,
 } from '@/lib/site'
 
 export default function Footer() {
@@ -31,10 +32,11 @@ export default function Footer() {
             <div>
               <h2>Areas</h2>
               <ul>
-                {AREAS.slice(0, 6).map(a => (
-                  <li key={a}><Link href="/contact#areas">{a}</Link></li>
+                {AREA_PAGES.slice(0, 6).map(a => (
+                  <li key={a.slug}><Link href={`/${a.slug}`}>{a.area}</Link></li>
                 ))}
-                <li><Link href="/contact#areas">All areas</Link></li>
+                <li><Link href="/areas">All areas</Link></li>
+                <li><Link href="/brands">AC brands we repair</Link></li>
               </ul>
               <h2 style={{ marginTop: 20 }}>AC guides</h2>
               <ul>

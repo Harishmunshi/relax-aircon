@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
-import { AREAS, HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, MAPS_LINK, whatsappLink } from '@/lib/site'
+import Link from 'next/link'
+import { AREA_PAGES } from '@/lib/areas'
+import { HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, MAPS_LINK, whatsappLink } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Contact Relax Aircon, Vadodara',
@@ -46,7 +48,7 @@ export default function ContactPage() {
           <div id="areas" style={{ scrollMarginTop: 80 }}>
             <h2>Service areas</h2>
             <p className="muted">All of Vadodara, including:</p>
-            <ul className="tag-list">{AREAS.map(a => <li key={a}>{a}</li>)}</ul>
+            <ul className="tag-list">{AREA_PAGES.map(a => <li key={a.slug}><Link href={`/${a.slug}`}>{a.area}</Link></li>)}</ul>
           </div>
         </div>
 

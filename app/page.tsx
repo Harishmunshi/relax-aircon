@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Hero from '@/components/Hero'
 import ServicesPreview from '@/components/ServicesPreview'
-import { AREAS, BRANDS, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/site'
+import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/site'
 import PopularServices from '@/components/PopularServices'
+import { AREA_PAGES } from '@/lib/areas'
+import { BRAND_PAGES } from '@/lib/brands'
 
 export const metadata: Metadata = {
   title: { absolute: 'AC Service and Repair in Vadodara | Relax Aircon' },
@@ -51,13 +53,13 @@ export default function Home() {
           <div>
             <h2 id="coverage-heading">Areas we cover in Vadodara</h2>
             <p className="muted">We visit homes, shops and offices across the city, including:</p>
-            <ul className="tag-list">{AREAS.map(a => <li key={a}>{a}</li>)}</ul>
+            <ul className="tag-list">{AREA_PAGES.map(a => <li key={a.slug}><Link href={`/${a.slug}`}>{a.area}</Link></li>)}</ul>
             <p className="small muted" style={{ marginTop: 14 }}>Not listed? <Link href="/contact">Ask us</Link>, we probably cover it.</p>
           </div>
           <div>
             <h2>Brands we work on</h2>
             <p className="muted">Split, window, cassette and central units from:</p>
-            <ul className="tag-list">{BRANDS.map(b => <li key={b}>{b}</li>)}</ul>
+            <ul className="tag-list">{BRAND_PAGES.map(b => <li key={b.slug}><Link href={`/${b.slug}`}>{b.brand}</Link></li>)}</ul>
           </div>
         </div>
       </section>

@@ -3,15 +3,28 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { LANDING_PAGES, landingBySlug } from '@/lib/landing'
 import { guideBySlug } from '@/lib/guides'
-import { AREAS, SITE_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/site'
+import { SITE_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/site'
+import { AREA_PAGES, areaBySlug } from '@/lib/areas'
+import { BRAND_PAGES, brandBySlug } from '@/lib/brands'
+import AreaView from '@/components/AreaView'
+import BrandView from '@/components/BrandView'
 
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return LANDING_PAGES.map(p => ({ slug: p.slug }))
+  return [...LANDING_PAGES, ...AREA_PAGES, ...BRAND_PAGES].map(p => ({ slug: p.slug }))
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const extra = areaBySlug(params.slug) ?? brandBySlug(params.slug)
+  if (extra) {
+    return {
+      title: extra.title,
+      description: extra.description,
+      alternates: { canonical: `/${extra.slug}` },
+      openGraph: { title: `${extra.title} | Relax Aircon`, description: extra.description, url: `${SITE_URL}/${extra.slug}` },
+    }
+  }
   const page = landingBySlug(params.slug)
   if (!page) return {}
   return {
@@ -23,6 +36,10 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 }
 
 export default function LandingPage({ params }: { params: { slug: string } }) {
+  const area = areaBySlug(params.slug)
+  if (area) return <AreaView page={area} />
+  const brand = brandBySlug(params.slug)
+  if (brand) return <BrandView page={brand} />
   const page = landingBySlug(params.slug)
   if (!page) notFound()
 
@@ -111,7 +128,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
         <section style={{ marginTop: 56 }} aria-labelledby="lp-areas">
           <h2 id="lp-areas">{page.label} across Vadodara</h2>
           <p className="muted">We visit homes, offices and shops in every part of the city, including:</p>
-          <ul className="tag-list">{AREAS.map(a => <li key={a}>{a}</li>)}</ul>
+          <ul className="tag-list">{AREA_PAGES.map(a => <li key={a.slug}><Link href={`/${a.slug}`}>{a.area}</Link></li>)}</ul>
         </section>
 
         {related.length > 0 && (
