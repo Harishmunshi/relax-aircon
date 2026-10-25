@@ -11,6 +11,8 @@ export type Guide = {
   sections: GuideSection[]
   /** Service page this guide sends readers to */
   cta: { href: string; label: string }
+  /** Slugs from lib/landing.ts */
+  services: string[]
   published: string
 }
 
@@ -54,6 +56,7 @@ export const GUIDES: Guide[] = [
       },
     ],
     cta: { href: '/ac-repair-vadodara', label: 'Book AC repair in Vadodara' },
+    services: ['ac-repair-vadodara', 'ac-gas-filling-vadodara', 'fast-ac-repair-vadodara', 'ac-service-vadodara'],
     published: '2026-10-25',
   },
   {
@@ -90,6 +93,7 @@ export const GUIDES: Guide[] = [
       },
     ],
     cta: { href: '/ac-service-vadodara', label: 'Book an AC service in Vadodara' },
+    services: ['ac-service-vadodara', 'ac-repair-vadodara', 'fast-ac-repair-vadodara'],
     published: '2026-10-25',
   },
   {
@@ -131,6 +135,7 @@ export const GUIDES: Guide[] = [
       },
     ],
     cta: { href: '/services', label: 'See all services and prices' },
+    services: ['ac-service-vadodara', 'ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-installation-vadodara', 'ac-amc-vadodara'],
     published: '2026-10-25',
   },
   {
@@ -168,6 +173,7 @@ export const GUIDES: Guide[] = [
       },
     ],
     cta: { href: '/ac-amc-vadodara', label: 'See AC AMC plans in Vadodara' },
+    services: ['ac-service-vadodara', 'ac-amc-vadodara', 'premium-ac-service-vadodara', 'central-ac-service-vadodara'],
     published: '2026-10-25',
   },
 ]

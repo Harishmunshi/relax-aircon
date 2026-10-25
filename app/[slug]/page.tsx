@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { LANDING_PAGES, landingBySlug } from '@/lib/landing'
+import { guideBySlug } from '@/lib/guides'
 import { AREAS, SITE_URL, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/site'
 
 export const dynamicParams = false
@@ -52,7 +53,11 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
       mainEntity: page.faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     },
   ]
-  const related = page.related.map(landingBySlug).filter(Boolean)
+  const relatedSlugs = [...page.related, ...LANDING_PAGES.map(p => p.slug)]
+    .filter((s, i, a) => s !== page.slug && a.indexOf(s) === i)
+    .slice(0, 6)
+  const related = relatedSlugs.map(landingBySlug).filter(Boolean)
+  const guides = page.guides.map(guideBySlug).filter(Boolean)
 
   return (
     <main className="section page-top" style={{ paddingBottom: 0 }}>
@@ -119,6 +124,14 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
         )}
       </div>
 
+      {guides.length > 0 && (
+        <div className="wrap" style={{ marginTop: 40 }}>
+          <h2 style={{ fontSize: '1.3rem' }}>Helpful guides</h2>
+          <ul className="plain-list">
+            {guides.map(g => <li key={g!.slug}><Link href={`/guides/${g!.slug}`}>{g!.h1}</Link></li>)}
+          </ul>
+        </div>
+      )}
       <section className="cta-band" style={{ marginTop: 64 }}>
         <div className="wrap">
           <h2>Need {page.label.toLowerCase()} today?</h2>

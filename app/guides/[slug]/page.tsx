@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { GUIDES, guideBySlug } from '@/lib/guides'
+import { landingBySlug } from '@/lib/landing'
 import { SITE_URL, BUSINESS_NAME, PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 
 export const dynamicParams = false
@@ -37,6 +38,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     publisher: { '@id': `${SITE_URL}/#business` },
   }
   const others = GUIDES.filter(o => o.slug !== g.slug)
+  const services = g.services.map(landingBySlug).filter(Boolean)
 
   return (
     <main className="section page-top">
@@ -62,6 +64,8 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
             <a href={`tel:${PHONE_TEL}`} className="btn btn-outline">Call now</a>
           </div>
         </div>
+        <h2 style={{ fontSize: '1.2rem' }}>Related services in Vadodara</h2>
+        <ul>{services.map(s => <li key={s!.slug}><Link href={`/${s!.slug}`}>{s!.label} in Vadodara</Link></li>)}</ul>
         <h2 style={{ fontSize: '1.2rem' }}>More AC guides</h2>
         <ul>{others.map(o => <li key={o.slug}><Link href={`/guides/${o.slug}`}>{o.h1}</Link></li>)}</ul>
       </article>

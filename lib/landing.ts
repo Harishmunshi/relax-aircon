@@ -23,6 +23,8 @@ export type LandingPage = {
   /** Short label for links */
   label: string
   related: string[]
+  /** Slugs from lib/guides.ts */
+  guides: string[]
 }
 
 export const LANDING_PAGES: LandingPage[] = [
@@ -54,6 +56,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Do you service all brands?', a: 'Yes. Daikin, Voltas, LG, Samsung, Blue Star, Hitachi, Lloyd, Carrier and other major brands, including inverter models.' },
     ],
     related: ['ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-amc-vadodara', 'premium-ac-service-vadodara'],
+    guides: ['how-often-service-ac', 'ac-service-cost-vadodara'],
   },
   {
     slug: 'ac-repair-vadodara',
@@ -84,6 +87,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Is there a warranty on AC repair?', a: 'Yes, all our repairs carry a 90 day warranty.' },
     ],
     related: ['fast-ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-service-vadodara', 'central-ac-service-vadodara'],
+    guides: ['ac-not-cooling', 'ac-water-leaking', 'ac-service-cost-vadodara'],
   },
   {
     slug: 'ac-gas-filling-vadodara',
@@ -112,6 +116,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Which gas does my AC use?', a: 'Older ACs mostly use R22. Newer and inverter models usually use R32 or R410A. The technician checks your model and uses the correct one.' },
     ],
     related: ['ac-repair-vadodara', 'ac-service-vadodara', 'fast-ac-repair-vadodara'],
+    guides: ['ac-not-cooling', 'ac-service-cost-vadodara'],
   },
   {
     slug: 'ac-installation-vadodara',
@@ -141,6 +146,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Can you move my AC to a new house?', a: 'Yes. We uninstall it, and reinstall it at your new home in Vadodara with a leak check.' },
     ],
     related: ['ac-service-vadodara', 'ac-gas-filling-vadodara', 'central-ac-service-vadodara'],
+    guides: ['ac-service-cost-vadodara', 'how-often-service-ac'],
   },
   {
     slug: 'premium-ac-service-vadodara',
@@ -170,6 +176,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Can I get a regular service plan?', a: 'Yes. Our annual maintenance contract (AMC) covers scheduled services through the year. See our AC AMC page.' },
     ],
     related: ['ac-amc-vadodara', 'ac-service-vadodara', 'central-ac-service-vadodara'],
+    guides: ['how-often-service-ac', 'ac-service-cost-vadodara'],
   },
   {
     slug: 'fast-ac-repair-vadodara',
@@ -197,6 +204,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Is there an extra charge for emergency visits?', a: 'Any charge is told to you on the phone before the technician leaves.' },
     ],
     related: ['ac-repair-vadodara', 'ac-gas-filling-vadodara', 'central-ac-service-vadodara'],
+    guides: ['ac-not-cooling', 'ac-water-leaking'],
   },
   {
     slug: 'ac-amc-vadodara',
@@ -218,6 +226,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Does the AMC cover spare parts?', a: 'Parts are quoted separately unless your plan includes them. We will explain exactly what is covered before you sign up.' },
     ],
     related: ['premium-ac-service-vadodara', 'ac-service-vadodara', 'central-ac-service-vadodara'],
+    guides: ['how-often-service-ac', 'ac-service-cost-vadodara'],
   },
   {
     slug: 'central-ac-service-vadodara',
@@ -239,6 +248,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Can you service outside business hours?', a: 'We work 7 days a week, including Sundays, and take emergency calls any time.' },
     ],
     related: ['ac-amc-vadodara', 'fast-ac-repair-vadodara', 'ac-installation-vadodara'],
+    guides: ['how-often-service-ac', 'ac-service-cost-vadodara'],
   },
   {
     slug: 'refrigerator-repair-vadodara',
@@ -260,6 +270,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'How much does fridge repair cost in Vadodara?', a: 'Fridge repair starts from ₹400. Gas filling starts from ₹2,500. You get the full price before any work.' },
     ],
     related: ['washing-machine-repair-vadodara', 'ac-repair-vadodara'],
+    guides: [],
   },
   {
     slug: 'washing-machine-repair-vadodara',
@@ -281,6 +292,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'How much does washing machine repair cost?', a: 'Repair starts from ₹350 and a general service from ₹299. Parts are quoted before work.' },
     ],
     related: ['refrigerator-repair-vadodara', 'ac-repair-vadodara'],
+    guides: [],
   },
 ]
 
