@@ -5,7 +5,7 @@ import { PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Book AC or Appliance Service in Vadodara',
-  description: 'Book an AC, fridge or washing machine service visit in Vadodara. Choose a date and time slot and we confirm by phone.',
+  description: 'Book an AC, fridge or washing machine service visit in Vadodara. Pick a free date and time slot online; we confirm by phone.',
   alternates: { canonical: '/book' },
 }
 
@@ -16,8 +16,8 @@ export default function BookPage() {
         <span className="eyebrow">Book a visit</span>
         <h1>Book a service visit</h1>
         <p className="lead" style={{ marginBottom: 28 }}>
-          Fill this in and send it to us on WhatsApp. We reply to confirm your slot. Prefer to talk?
-          Call <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>.
+          Choose a date and a free time slot. Slots that are already taken are greyed out. We call to
+          confirm your visit. Prefer to talk? Call <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>.
         </p>
         <div className="panel">
           <Suspense fallback={<div className="skeleton" style={{ height: 320 }} aria-label="Loading form" />}>

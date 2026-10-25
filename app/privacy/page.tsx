@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 }
 
-const UPDATED = '23 October 2026'
+const UPDATED = '26 October 2026'
 
 export default function PrivacyPage() {
   return (
@@ -31,9 +31,10 @@ export default function PrivacyPage() {
 
         <h2>How booking works</h2>
         <p>
-          The booking form does not store your details on our website. When you press send, it opens WhatsApp
-          with your details filled in, and the message is sent to us only when you send it. WhatsApp is operated
-          by Meta and its own privacy policy applies to that message.
+          When you submit the booking form, your details are saved in our booking database and emailed to the
+          owner so we can call you and send a technician. The time slot you pick is marked as booked for other
+          customers; no personal details are shown to anyone else. After booking you can also choose to send a
+          confirmation message to us on WhatsApp, which is operated by Meta and covered by its own privacy policy.
         </p>
 
         <h2>How we use your information</h2>
@@ -47,7 +48,7 @@ export default function PrivacyPage() {
         <h2>Who we share it with</h2>
         <p>
           Only the technician assigned to your job, and service providers that run our website (hosting) or
-          communications (WhatsApp, phone). We may disclose information if the law requires it.
+          communications (database hosting, email, WhatsApp, phone). We may disclose information if the law requires it.
         </p>
 
         <h2>Third-party content</h2>

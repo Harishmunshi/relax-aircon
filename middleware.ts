@@ -15,8 +15,11 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  // Login and logout endpoints are public.
-  if (pathname.startsWith('/api/auth/')) return NextResponse.next()
+  // Login/logout and the two customer booking endpoints are public. Matched exactly so that any
+  // future /api/bookings/* admin route stays behind the staff login.
+  if (pathname.startsWith('/api/auth/') || pathname === '/api/bookings' || pathname === '/api/bookings/slots') {
+    return NextResponse.next()
+  }
 
   const session = await verifySession(req.cookies.get(SESSION_COOKIE)?.value)
 
