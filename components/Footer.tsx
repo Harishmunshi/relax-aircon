@@ -49,6 +49,8 @@ export default function Footer() {
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} Relax Aircon, Vadodara</span>
             <span>
+              <Link href="/guides">AC help guides</Link>
+              {' · '}
               <Link href="/privacy">Privacy policy</Link>
               {' · '}
               <Link href="/terms">Terms of service</Link>

@@ -6,7 +6,7 @@ import { AREAS, BRANDS, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/sit
 import PopularServices from '@/components/PopularServices'
 
 export const metadata: Metadata = {
-  title: { absolute: 'AC Service and Repair in Vadodara | Same-Day, From ₹350 | Relax Aircon' },
+  title: { absolute: 'AC Service and Repair in Vadodara | Relax Aircon' },
   alternates: { canonical: '/' },
 }
 

@@ -29,9 +29,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'ac-service-vadodara',
     label: 'AC service',
-    title: 'AC Service in Vadodara at Home | Split and Window AC from ₹350',
+    title: 'AC Service in Vadodara at Home, From ₹350',
     description:
-      'AC service at home in Vadodara from ₹350. Split, window and inverter AC cleaning, filter wash, cooling check. Same-day visits across Vadodara. Call +91 70432 45355.',
+      'AC service at home in Vadodara from ₹350. Split, window and inverter AC cleaning and cooling check. Same-day visits. Call +91 70432 45355.',
     h1: 'AC service in Vadodara',
     intro:
       'Regular AC servicing keeps your unit cooling properly, lowers your electricity bill and stops small faults becoming expensive repairs. We service split, window and inverter ACs at your home anywhere in Vadodara, usually on the same day you call.',
@@ -58,9 +58,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'ac-repair-vadodara',
     label: 'AC repair',
-    title: 'AC Repair in Vadodara | Same-Day Split, Window and Inverter AC Repair',
+    title: 'AC Repair in Vadodara, Same-Day, All Brands',
     description:
-      'AC not cooling, leaking water or showing an error code? Same-day AC repair in Vadodara for all brands, from ₹350. Price before work, 90 day warranty. Call +91 70432 45355.',
+      'Same-day AC repair in Vadodara from ₹350. Not cooling, water leaking, error codes, inverter PCB. Price before work, 90 day warranty.',
     h1: 'AC repair in Vadodara',
     intro:
       'When your AC stops cooling in a Vadodara summer, you need it fixed today, not next week. Our technicians repair split, window, cassette and inverter ACs at your home, tell you the cost before starting, and back the repair with a 90 day warranty.',
@@ -88,9 +88,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'ac-gas-filling-vadodara',
     label: 'AC gas filling',
-    title: 'AC Gas Filling in Vadodara | Gas Refill for Split and Window AC',
+    title: 'AC Gas Filling in Vadodara, From ₹2,500',
     description:
-      'AC gas filling and refill in Vadodara from ₹2,500. Leak check before filling, R22, R32 and R410A. Split, window and inverter AC. Call +91 70432 45355.',
+      'AC gas filling in Vadodara from ₹2,500. Leak check and repair before refill. R22, R32 and R410A for split, window and inverter ACs.',
     h1: 'AC gas filling in Vadodara',
     intro:
       'If your AC blows air but does not cool, it may be low on refrigerant gas. We check for leaks first, fix them, and then fill the correct gas for your model, so you are not paying for a refill that leaks out again.',
@@ -116,9 +116,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'ac-installation-vadodara',
     label: 'AC installation',
-    title: 'AC Installation in Vadodara | Split AC Fitting and Uninstallation',
+    title: 'AC Installation in Vadodara, From ₹1,200',
     description:
-      'Split and window AC installation in Vadodara from ₹1,200. New AC fitting, uninstallation and shifting to a new home. All brands. Call +91 70432 45355.',
+      'Split and window AC installation in Vadodara from ₹1,200. New AC fitting, uninstallation and shifting. All brands. Call +91 70432 45355.',
     h1: 'AC installation in Vadodara',
     intro:
       'A badly installed AC loses gas, leaks water and cools poorly from day one. We install new split and window ACs properly, and we also uninstall and reinstall ACs when you shift home or office in Vadodara.',
@@ -145,9 +145,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'premium-ac-service-vadodara',
     label: 'Premium AC service',
-    title: 'Premium AC Service in Vadodara | Trusted Technicians, Price Before Work',
+    title: 'Premium AC Service in Vadodara, Same-Day',
     description:
-      'Premium AC service in Vadodara: verified technicians, upfront pricing, same-day visits and a 90 day warranty on repairs. Split, inverter and central AC. Call +91 70432 45355.',
+      'Premium AC service in Vadodara: verified technicians, price before work, same-day visits and a 90 day warranty. Call +91 70432 45355.',
     h1: 'Premium AC service in Vadodara',
     intro:
       'Premium does not have to mean overpriced. It means a background-checked technician who arrives when promised, explains the problem in plain words, quotes the full price before starting, and stands behind the work. That is how Relax Aircon has served Vadodara since 2020.',
@@ -174,9 +174,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'fast-ac-repair-vadodara',
     label: 'Fast / emergency AC repair',
-    title: 'Fast AC Repair in Vadodara | Same-Day and 24/7 Emergency AC Service',
+    title: 'Fast AC Repair in Vadodara, 24/7 Emergency',
     description:
-      'AC broke down? Fast AC repair in Vadodara with same-day visits and 24/7 emergency service. Technician typically there in under 2 hours. Call +91 70432 45355 now.',
+      'AC broke down? Fast AC repair in Vadodara, same day and 24/7. A technician is typically with you in under 2 hours. Call +91 70432 45355.',
     h1: 'Fast AC repair in Vadodara, same day',
     intro:
       'In a Vadodara summer, an AC breakdown cannot wait. Call us and we send the nearest available technician, typically in under 2 hours. Emergency calls are taken 24 hours a day, 7 days a week.',
@@ -201,9 +201,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'ac-amc-vadodara',
     label: 'AC AMC',
-    title: 'AC AMC in Vadodara | Annual Maintenance Contract for Home and Office',
+    title: 'AC AMC in Vadodara, Annual Maintenance',
     description:
-      'AC annual maintenance contract (AMC) in Vadodara from ₹2,000. Scheduled servicing, priority visits for homes, offices and shops. Call +91 70432 45355.',
+      'AC annual maintenance contract in Vadodara from ₹2,000. Scheduled servicing for homes, offices and shops. Call +91 70432 45355.',
     h1: 'AC annual maintenance contract (AMC) in Vadodara',
     intro:
       'An AMC takes AC care off your list. We service your units on a schedule through the year, so they keep cooling efficiently and faults are caught early. Ideal for homes with several ACs, offices, shops and clinics.',
@@ -222,9 +222,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'central-ac-service-vadodara',
     label: 'Central / commercial AC',
-    title: 'Central AC and Commercial AC Service in Vadodara | Cassette, Ducted, VRF',
+    title: 'Central and Commercial AC Service, Vadodara',
     description:
-      'Central AC, cassette AC and commercial AC installation, repair and servicing in Vadodara for offices, shops and clinics. Service from ₹750. Call +91 70432 45355.',
+      'Central, cassette and VRF AC installation, repair and servicing in Vadodara for offices, shops and clinics. Service from ₹750.',
     h1: 'Central and commercial AC service in Vadodara',
     intro:
       'When a central or cassette AC fails at a shop, office or clinic, it costs you customers. We install, service and repair ducted, cassette and VRF systems across Vadodara, with maintenance contracts to keep them running.',
@@ -243,9 +243,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'refrigerator-repair-vadodara',
     label: 'Refrigerator repair',
-    title: 'Refrigerator Repair in Vadodara | Fridge Not Cooling, Gas Filling',
+    title: 'Refrigerator Repair in Vadodara, From ₹400',
     description:
-      'Fridge repair at home in Vadodara from ₹400. Not cooling, compressor, thermostat, gas filling, single and double door. All brands. Call +91 70432 45355.',
+      'Fridge repair at home in Vadodara from ₹400. Not cooling, compressor, thermostat, gas filling. Single and double door, all brands.',
     h1: 'Refrigerator repair in Vadodara',
     intro:
       'A fridge that stops cooling can spoil a week of groceries overnight. We repair single door, double door and side-by-side refrigerators at your home in Vadodara, usually on the same day.',
@@ -264,9 +264,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     slug: 'washing-machine-repair-vadodara',
     label: 'Washing machine repair',
-    title: 'Washing Machine Repair in Vadodara | Front Load and Top Load',
+    title: 'Washing Machine Repair in Vadodara, ₹350+',
     description:
-      'Washing machine repair at home in Vadodara from ₹350. Front load and top load: not spinning, not draining, drum, motor and PCB faults. Call +91 70432 45355.',
+      'Washing machine repair at home in Vadodara from ₹350. Front load and top load: not spinning, not draining, drum, motor and PCB faults.',
     h1: 'Washing machine repair in Vadodara',
     intro:
       'We repair fully automatic and semi automatic washing machines, front load and top load, at your home anywhere in Vadodara.',

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/site'
 import { LANDING_PAGES } from '@/lib/landing'
+import { GUIDES } from '@/lib/guides'
 
 const pages: { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }[] = [
   { path: '', priority: 1, changeFrequency: 'weekly' },
@@ -14,6 +15,11 @@ const pages: { path: string; priority: number; changeFrequency: 'weekly' | 'mont
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
-  const all = [...pages, ...LANDING_PAGES.map(l => ({ path: `/${l.slug}`, priority: 0.9, changeFrequency: 'monthly' as const }))]
+  const all = [
+    ...pages,
+    ...LANDING_PAGES.map(l => ({ path: `/${l.slug}`, priority: 0.9, changeFrequency: 'monthly' as const })),
+    { path: '/guides', priority: 0.6, changeFrequency: 'monthly' as const },
+    ...GUIDES.map(g => ({ path: `/guides/${g.slug}`, priority: 0.6, changeFrequency: 'yearly' as const })),
+  ]
   return all.map(p => ({ url: `${SITE_URL}${p.path}`, lastModified, changeFrequency: p.changeFrequency, priority: p.priority }))
 }

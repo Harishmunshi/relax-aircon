@@ -138,7 +138,7 @@ img { max-width: 100%; display: block; }
 .steps h3 { margin-bottom: 4px; }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-.plain-list { padding-left: 1.1em; margin: 0; }
+.plain-list { padding-left: 1.1em; margin: 0; list-style: disc; }
 .plain-list li { margin-bottom: 8px; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
 .tag-list li { border: 1px solid var(--line); background: var(--surface); padding: 4px 12px; border-radius: var(--radius); font-size: 0.9rem; color: var(--ink-2); }
@@ -177,7 +177,8 @@ img { max-width: 100%; display: block; }
 /* Prose (legal pages) */
 .prose { max-width: 720px; }
 .prose h2 { font-size: 1.4rem; margin-top: 2em; }
-.prose ul { padding-left: 1.2em; }
+.prose ul { padding-left: 1.2em; list-style: disc; }
+.prose li { margin-bottom: 8px; }
 
 /* Footer */
 .site-footer { background: var(--surface); border-top: 1px solid var(--line); padding: 48px 0 28px; font-size: 0.95rem; }

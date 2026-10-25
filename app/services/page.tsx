@@ -5,7 +5,7 @@ import PopularServices from '@/components/PopularServices'
 import { PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'AC, Fridge and Washing Machine Services in Vadodara',
+  title: 'Appliance Repair Services and Prices, Vadodara',
   description:
     'AC repair, service, installation and gas refill in Vadodara, plus fridge, washing machine, deep freezer and central AC work. Starting prices listed.',
   alternates: { canonical: '/services' },

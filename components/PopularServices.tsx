@@ -10,6 +10,10 @@ export default function PopularServices() {
           <li key={p.slug}><Link href={`/${p.slug}`}>{p.label} in Vadodara</Link></li>
         ))}
       </ul>
+      <p className="small muted" style={{ marginTop: 14 }}>
+        Not sure what is wrong? Read our <Link href="/guides/ac-not-cooling">AC not cooling guide</Link> or the{' '}
+        <Link href="/guides/ac-service-cost-vadodara">AC price guide for Vadodara</Link>.
+      </p>
     </div>
   )
 }

@@ -12,12 +12,12 @@ const sans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '
 const serif = Source_Serif_4({ subsets: ['latin'], weight: ['600', '700'], variable: '--font-serif', display: 'swap' })
 
 const description =
-  'AC service and AC repair in Vadodara at home: gas filling, installation, AMC, plus fridge and washing machine repair. Same-day visits, price before work. Call +91 70432 45355.'
+  'AC service and repair at home in Vadodara: gas filling, installation, AMC, fridge and washing machine repair. Same-day visits. Call +91 70432 45355.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'AC Service and Repair in Vadodara | Same-Day | Relax Aircon',
+    default: 'AC Service and Repair in Vadodara | Relax Aircon',
     template: '%s | Relax Aircon',
   },
   description,
