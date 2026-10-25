@@ -23,6 +23,7 @@ export default function EmployeesPage() {
   const [error, setError] = useState('')
 
   const [search, setSearch] = useState('')
+  const [debouncedSearch, setDebouncedSearch] = useState('')
   const [filterRole, setFilterRole] = useState('')
   const [filterStatus, setFilterStatus] = useState('active')
   const [page, setPage] = useState(1)
@@ -36,9 +37,9 @@ export default function EmployeesPage() {
     setError('')
     const params = new URLSearchParams({
       page: String(page), limit: String(limit),
-      ...(search && { search }),
+      ...(debouncedSearch && { search: debouncedSearch }),
       ...(filterRole && { role: filterRole }),
-      ...(filterStatus && { status: filterStatus }),
+      status: filterStatus || 'all',
     })
     try {
       const res = await fetch(`/api/employee?${params}`)
@@ -50,15 +51,15 @@ export default function EmployeesPage() {
       setError(e instanceof Error ? e.message : 'Failed to load employees')
     }
     setLoading(false)
-  }, [page, search, filterRole, filterStatus])
+  }, [page, debouncedSearch, filterRole, filterStatus])
 
   useEffect(() => { fetchEmployees() }, [fetchEmployees])
 
-  // Debounce search
+  // Debounce search: only the settled value triggers a fetch
   useEffect(() => {
-    const t = setTimeout(() => { setPage(1); fetchEmployees() }, 350)
+    const t = setTimeout(() => { setPage(1); setDebouncedSearch(search.trim()) }, 350)
     return () => clearTimeout(t)
-  }, [search]) // eslint-disable-line
+  }, [search])
 
   const updateStatus = async (id: string, status: string) => {
     setUpdating(id)

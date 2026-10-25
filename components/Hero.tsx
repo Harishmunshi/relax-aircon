@@ -1,14 +1,14 @@
 import Link from 'next/link'
-import { PHONE_DISPLAY, PHONE_TEL, FOUNDED } from '@/lib/site'
+import { PHONE_DISPLAY, PHONE_TEL, FOUNDED, priceOf } from '@/lib/site'
 import AcUnit from '@/components/AcUnit'
 
 const quickPrices: [string, string][] = [
-  ['AC service', '₹350+'],
-  ['AC repair', '₹350+'],
-  ['AC installation', '₹1,200+'],
-  ['AC gas refill', '₹2,500+'],
-  ['Fridge repair', '₹400+'],
-  ['Washing machine repair', '₹350+'],
+  ['AC service', priceOf('ac', 'Service')],
+  ['AC repair', priceOf('ac', 'Repair')],
+  ['AC installation', priceOf('ac', 'Installation')],
+  ['AC gas refill', priceOf('ac', 'Gas refill')],
+  ['Fridge repair', priceOf('fridge', 'Repair')],
+  ['Washing machine repair', priceOf('washing-machine', 'Repair')],
 ]
 
 export default function Hero() {

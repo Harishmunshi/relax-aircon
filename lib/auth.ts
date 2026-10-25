@@ -37,7 +37,7 @@ function equalBytes(a: Uint8Array, b: Uint8Array) {
 }
 
 export function authConfigured() {
-  return !!secret() && !!process.env.ADMIN_PASSWORD
+  return !!secret() && (process.env.ADMIN_PASSWORD ?? '').length >= 8
 }
 
 /** Constant-time password check against the env var for that role. */

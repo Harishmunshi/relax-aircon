@@ -33,11 +33,14 @@ export type Service = {
   category: string
   description: string
   prices: [string, string][]
+  /** Keyword landing page for this service */
+  page: string
 }
 
 export const SERVICES: Service[] = [
   {
     id: 'ac',
+    page: '/ac-service-vadodara',
     name: 'Split and window AC',
     category: 'Air conditioning',
     description: 'Installation, uninstallation, repair, gas refill, wet servicing and annual maintenance contracts for every major brand.',
@@ -45,6 +48,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'central-ac',
+    page: '/central-ac-service-vadodara',
     name: 'Central and commercial AC',
     category: 'Commercial',
     description: 'Ducted, cassette and VRF systems for shops, offices and clinics. Installation, repair and scheduled maintenance.',
@@ -52,6 +56,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'fridge',
+    page: '/refrigerator-repair-vadodara',
     name: 'Refrigerator',
     category: 'Refrigeration',
     description: 'Cooling problems, compressor and thermostat faults, gas refill and door seal replacement for single and double door models.',
@@ -59,6 +64,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'washing-machine',
+    page: '/washing-machine-repair-vadodara',
     name: 'Washing machine',
     category: 'Laundry',
     description: 'Front load and top load. Motor, drum, PCB, drain pump and inlet valve repairs, plus installation.',
@@ -66,6 +72,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'deep-freezer',
+    page: '/refrigerator-repair-vadodara',
     name: 'Deep freezer and water cooler',
     category: 'Commercial',
     description: 'Servicing and repair of commercial deep freezers and water coolers, with maintenance contracts available.',
@@ -73,6 +80,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'emergency',
+    page: '/fast-ac-repair-vadodara',
     name: 'Emergency repair',
     category: 'Any time',
     description: 'AC down in peak summer or a fridge full of food that stopped cooling. Call and we send the nearest technician.',
@@ -84,3 +92,10 @@ export const BOOKING_SERVICES = [
   'AC repair', 'AC service', 'AC installation', 'Gas refill', 'Annual AMC',
   'Central AC', 'Fridge repair', 'Washing machine', 'Deep freezer / cooler', 'Emergency repair',
 ]
+
+/** Price for one row of a service, e.g. priceOf('ac', 'Gas refill') -> '₹2,500+'. */
+export function priceOf(serviceId: string, label: string) {
+  const row = SERVICES.find(s => s.id === serviceId)?.prices.find(([l]) => l === label)
+  if (!row) throw new Error(`No price "${label}" for service "${serviceId}"`)
+  return row[1]
+}

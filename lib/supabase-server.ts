@@ -24,6 +24,7 @@ export const EMPLOYEE_STATUSES = ['active', 'inactive', 'terminated'] as const
 /** Integer within [min, max], or null for empty. Returns undefined when invalid. */
 export function intOrNull(v: unknown, min: number, max: number): number | null | undefined {
   if (v === null || v === undefined || v === '') return null
+  if (typeof v !== 'number' && typeof v !== 'string') return undefined
   const n = typeof v === 'number' ? v : Number(v)
   if (!Number.isInteger(n) || n < min || n > max) return undefined
   return n

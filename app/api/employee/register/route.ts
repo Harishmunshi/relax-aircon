@@ -51,7 +51,9 @@ export async function POST(req: NextRequest) {
   if (salary === undefined) errors.expected_salary = 'Enter a valid salary'
 
   // Only accept photos uploaded to our own Supabase bucket, so arbitrary URLs cannot be stored and rendered.
-  const photoPrefix = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/employee-photos/`
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  if (!supabaseUrl) return notConfigured()
+  const photoPrefix = `${supabaseUrl}/storage/v1/object/public/employee-photos/`
   if (body.profile_photo && !body.profile_photo.startsWith(photoPrefix)) errors.profile_photo = 'Invalid photo URL'
 
   if (!body.full_name?.trim() || body.full_name.trim().length < 2)

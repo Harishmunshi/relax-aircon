@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
   const offset = (page - 1) * limit
 
   if (role && !ROLE_VALUES.includes(role)) return NextResponse.json({ error: 'Invalid role' }, { status: 400 })
-  if (status && !(EMPLOYEE_STATUSES as readonly string[]).includes(status)) return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
+  if (status && status !== 'all' && !(EMPLOYEE_STATUSES as readonly string[]).includes(status)) return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
 
   const db = createServerSupabase()
   if (!db) return notConfigured()
@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
       { count: 'exact' }
     )
 
-  if (status) query = query.eq('status', status)
+  if (status && status !== 'all') query = query.eq('status', status)
   if (role)   query = query.eq('role', role)
   if (search) query = query.or(`full_name.ilike.%${search}%,mobile.ilike.%${search}%,email.ilike.%${search}%`)
 

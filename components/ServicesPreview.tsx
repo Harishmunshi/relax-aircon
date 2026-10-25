@@ -1,15 +1,6 @@
 import Link from 'next/link'
 import { SERVICES, PHONE_TEL } from '@/lib/site'
 
-const DETAIL_PAGE: Record<string, string> = {
-  ac: '/ac-service-vadodara',
-  'central-ac': '/central-ac-service-vadodara',
-  fridge: '/refrigerator-repair-vadodara',
-  'washing-machine': '/washing-machine-repair-vadodara',
-  'deep-freezer': '/refrigerator-repair-vadodara',
-  emergency: '/fast-ac-repair-vadodara',
-}
-
 export default function ServicesPreview({ headingLevel = 'h2' }: { headingLevel?: 'h2' | 'h3' }) {
   const Heading = headingLevel
   return (
@@ -20,7 +11,7 @@ export default function ServicesPreview({ headingLevel = 'h2' }: { headingLevel?
           <article key={s.id} id={s.id} className={`service${emergency ? ' service-emergency' : ''}`}>
             <span className="cat">{s.category}</span>
             <Heading style={{ fontSize: '1.35rem', margin: '6px 0 8px' }}>
-              <Link href={DETAIL_PAGE[s.id]} style={{ color: 'inherit' }}>{s.name}</Link>
+              <Link href={s.page} style={{ color: 'inherit' }}>{s.name}</Link>
             </Heading>
             <p className="muted" style={{ margin: 0 }}>{s.description}</p>
             <dl>

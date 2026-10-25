@@ -3,7 +3,7 @@ import { IBM_Plex_Sans, Source_Serif_4 } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import WhatsAppButton from '@/components/WhatsAppButton'
+import MobileContactBar from '@/components/MobileContactBar'
 import {
   SITE_URL, BUSINESS_NAME, OWNER, FOUNDED, PHONE_TEL, HOURS, AREAS, SERVICES,
 } from '@/lib/site'
@@ -69,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
         <Navbar />
         <div id="main">{children}</div>
-        <WhatsAppButton />
+        <MobileContactBar />
         <Footer />
       </body>
     </html>
