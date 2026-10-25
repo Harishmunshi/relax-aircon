@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import PublicOnly from '@/components/PublicOnly'
 import { LANDING_PAGES } from '@/lib/landing'
+import { GUIDES } from '@/lib/guides'
 import {
   AREAS, HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, FOUNDED, MAPS_LINK, whatsappLink,
 } from '@/lib/site'
@@ -21,7 +22,7 @@ export default function Footer() {
             <div>
               <h2>Services</h2>
               <ul>
-                {LANDING_PAGES.slice(0, 8).map(p => (
+                {LANDING_PAGES.map(p => (
                   <li key={p.slug}><Link href={`/${p.slug}`}>{p.label} Vadodara</Link></li>
                 ))}
                 <li><Link href="/services">All services and prices</Link></li>
@@ -34,6 +35,12 @@ export default function Footer() {
                   <li key={a}><Link href="/contact#areas">{a}</Link></li>
                 ))}
                 <li><Link href="/contact#areas">All areas</Link></li>
+              </ul>
+              <h2 style={{ marginTop: 20 }}>AC guides</h2>
+              <ul>
+                {GUIDES.map(g => (
+                  <li key={g.slug}><Link href={`/guides/${g.slug}`}>{g.title}</Link></li>
+                ))}
               </ul>
             </div>
             <div>

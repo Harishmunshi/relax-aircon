@@ -55,7 +55,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'How much does AC service cost in Vadodara?', a: 'Our AC service starts from ₹350 for a split or window AC. If the technician finds a fault, you are told the repair price first and nothing is done without your approval.' },
       { q: 'Do you service all brands?', a: 'Yes. Daikin, Voltas, LG, Samsung, Blue Star, Hitachi, Lloyd, Carrier and other major brands, including inverter models.' },
     ],
-    related: ['ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-amc-vadodara', 'premium-ac-service-vadodara'],
+    related: ['ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-amc-vadodara', 'premium-ac-service-vadodara', 'refrigerator-repair-vadodara', 'washing-machine-repair-vadodara'],
     guides: ['how-often-service-ac', 'ac-service-cost-vadodara'],
   },
   {
@@ -86,7 +86,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Do you repair inverter ACs?', a: 'Yes, including inverter PCB and error code faults on all major brands.' },
       { q: 'Is there a warranty on AC repair?', a: 'Yes, all our repairs carry a 90 day warranty.' },
     ],
-    related: ['fast-ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-service-vadodara', 'central-ac-service-vadodara'],
+    related: ['fast-ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-service-vadodara', 'central-ac-service-vadodara', 'refrigerator-repair-vadodara', 'washing-machine-repair-vadodara'],
     guides: ['ac-not-cooling', 'ac-water-leaking', 'ac-service-cost-vadodara'],
   },
   {
