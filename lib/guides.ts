@@ -176,6 +176,157 @@ export const GUIDES: Guide[] = [
     services: ['ac-service-vadodara', 'ac-amc-vadodara', 'premium-ac-service-vadodara', 'central-ac-service-vadodara'],
     published: '2026-10-25',
   },
+
+  {
+    slug: 'fridge-not-cooling',
+    title: 'Fridge Not Cooling? Causes and What to Check',
+    description: 'Refrigerator not cooling or freezer not freezing? The common causes, quick checks you can do yourself, and when to call a technician in Vadodara.',
+    h1: 'Fridge not cooling? Common causes and what to check',
+    intro: 'A fridge that stops cooling can spoil food within hours. Some causes are simple and take two minutes to check; others need a technician. Here is how to tell the difference.',
+    sections: [
+      {
+        heading: 'Check these first',
+        list: [
+          'Power: confirm the plug is firmly in and the socket works with another appliance.',
+          'Thermostat dial: make sure it has not been turned to a low setting or off by accident.',
+          'Door: check that nothing blocks it from closing and the rubber seal is not torn or dirty.',
+          'Back and sides: leave a gap of a few inches so the fridge can release heat.',
+          'Overloading: packed shelves block airflow. Remove some items and wait a few hours.',
+        ],
+      },
+      {
+        heading: 'Common causes when those checks are fine',
+        list: [
+          'Faulty thermostat or temperature sensor, so the compressor does not switch on when it should.',
+          'Dirty condenser coils at the back or bottom, which stop the fridge from shedding heat.',
+          'Ice blocking the vents because of a defrost problem, often seen as a thick frost layer at the back.',
+          'Worn door gasket letting warm air in.',
+          'Refrigerant gas leak. This needs a leak repair and gas filling.',
+          'Compressor or start relay fault. The fridge hums or clicks but does not start cooling.',
+        ],
+      },
+      {
+        heading: 'When to call a technician',
+        paragraphs: [
+          'Call if the fridge still does not cool after the basic checks, if the compressor clicks without starting, or if there is a build-up of ice at the back. Move perishable food to another fridge or a cooler in the meantime. Our fridge repair in Vadodara starts from ₹400, and you are told the full price before any work.',
+        ],
+      },
+    ],
+    cta: { href: '/refrigerator-repair-vadodara', label: 'Book fridge repair in Vadodara' },
+    services: ['refrigerator-repair-vadodara'],
+    published: '2026-10-26',
+  },
+  {
+    slug: 'washing-machine-not-draining',
+    title: 'Washing Machine Not Draining or Spinning: Fixes',
+    description: 'Washing machine not draining water or not spinning? Common causes, what to check at home, and when a repair is needed in Vadodara.',
+    h1: 'Washing machine not draining or spinning? What to check',
+    intro: 'When a washing machine stops draining or spinning, clothes stay soaked and the door may not unlock. Many cases are a blockage you can clear yourself.',
+    sections: [
+      {
+        heading: 'Check these first',
+        list: [
+          'Drain hose: make sure it is not kinked, bent behind the machine or pushed too deep into the drain.',
+          'Pump filter: many front load machines have a small filter door at the bottom front. Clean out coins, hair and lint (keep a towel and tray ready for water).',
+          'Load: an unbalanced or overloaded drum can stop the spin cycle. Redistribute the clothes.',
+          'Door or lid: the machine will not spin if the lock is not engaged. Close it firmly.',
+          'Power reset: switch off at the socket for a minute and restart the cycle.',
+        ],
+      },
+      {
+        heading: 'Common causes when it still does not work',
+        list: [
+          'Failed drain pump, often making a humming or grinding noise.',
+          'Faulty lid switch or door lock.',
+          'Worn drive belt or motor problem, so the drum does not turn.',
+          'Control board (PCB) fault, sometimes with an error code on the display.',
+          'Inlet valve fault if the machine is not filling with water.',
+        ],
+      },
+      {
+        heading: 'When to call a technician',
+        paragraphs: [
+          'Call if the pump filter is clear but water still does not leave, if the drum does not turn at all, or if the display shows an error code. Do not open the door while there is water inside. Our washing machine repair in Vadodara starts from ₹350, and you get the price before work begins.',
+        ],
+      },
+    ],
+    cta: { href: '/washing-machine-repair-vadodara', label: 'Book washing machine repair in Vadodara' },
+    services: ['washing-machine-repair-vadodara'],
+    published: '2026-10-26',
+  },
+  {
+    slug: 'inverter-vs-non-inverter-ac',
+    title: 'Inverter vs Non-Inverter AC: Which to Buy in Vadodara',
+    description: 'Inverter or non-inverter AC? The difference in running cost, cooling and repair, and which suits a Vadodara home or shop.',
+    h1: 'Inverter vs non-inverter AC: which should you buy?',
+    intro: 'The difference is how the compressor runs. A non-inverter AC switches the compressor fully on and off. An inverter AC changes the compressor speed to hold the temperature, which saves electricity when it runs for long hours.',
+    sections: [
+      {
+        heading: 'Quick comparison',
+        list: [
+          'Running cost: inverter ACs use less electricity when used for many hours a day.',
+          'Purchase price: inverter models usually cost more upfront.',
+          'Cooling: inverter ACs hold a steady temperature, while non-inverter units cycle on and off.',
+          'Noise: inverter ACs are generally quieter once the room has cooled.',
+          'Repairs: inverter boards (PCB) cost more to replace than the simpler controls in non-inverter units.',
+        ],
+      },
+      {
+        heading: 'Which one suits you',
+        list: [
+          'Bedrooms and offices used 8 or more hours a day: an inverter AC usually pays for itself in lower bills.',
+          'Guest rooms or spaces used a few hours a week: a non-inverter AC can be the cheaper choice overall.',
+          'Shops and clinics with long hours: inverter or cassette units, with a maintenance contract.',
+        ],
+      },
+      {
+        heading: 'Installation and service matter more than the type',
+        paragraphs: [
+          'A poorly installed inverter AC will cool badly and cost more to run than a well installed non-inverter one. Whichever you choose, have it fitted properly and serviced twice a year. We install and service both types in Vadodara.',
+        ],
+      },
+    ],
+    cta: { href: '/ac-installation-vadodara', label: 'AC installation in Vadodara' },
+    services: ['ac-installation-vadodara', 'ac-repair-vadodara', 'ac-service-vadodara'],
+    published: '2026-10-26',
+  },
+  {
+    slug: 'ac-gas-leak-signs',
+    title: 'AC Gas Leak: Signs, Causes and What to Do',
+    description: 'How to tell if your AC has a gas leak: warning signs, why it happens, and why a leak must be fixed before refilling gas.',
+    h1: 'AC gas leak: signs, causes and what to do',
+    intro: 'An AC does not use up its refrigerant gas. If the level is low, there is a leak somewhere, and topping up without fixing it only buys a few weeks.',
+    sections: [
+      {
+        heading: 'Signs of a gas leak',
+        list: [
+          'The AC runs but the air is not cold, or cooling gets weaker over weeks.',
+          'Ice forms on the copper pipes or on the indoor coil.',
+          'The outdoor unit runs constantly without cooling the room.',
+          'A hissing or bubbling sound near the indoor unit or pipes.',
+          'Oily residue at the pipe joints or flare connections.',
+        ],
+      },
+      {
+        heading: 'Where leaks usually happen',
+        list: [
+          'Flare nut joints where the copper pipe meets the indoor or outdoor unit, especially after installation or shifting.',
+          'Pinholes in the copper coil from corrosion.',
+          'Damaged pipes crushed or bent during fitting.',
+          'Service valves on the outdoor unit.',
+        ],
+      },
+      {
+        heading: 'What to do',
+        paragraphs: [
+          'Switch the AC off and call a technician. A proper job finds the leak with a pressure test, repairs it, then fills the correct gas for your model. Our AC gas filling in Vadodara starts from ₹2,500 and always includes the leak check first.',
+        ],
+      },
+    ],
+    cta: { href: '/ac-gas-filling-vadodara', label: 'AC gas filling in Vadodara' },
+    services: ['ac-gas-filling-vadodara', 'ac-repair-vadodara', 'fast-ac-repair-vadodara'],
+    published: '2026-10-26',
+  },
 ]
 
 export const guideBySlug = (slug: string) => GUIDES.find(g => g.slug === slug)

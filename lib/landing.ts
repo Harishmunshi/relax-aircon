@@ -116,7 +116,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Which gas does my AC use?', a: 'Older ACs mostly use R22. Newer and inverter models usually use R32 or R410A. The technician checks your model and uses the correct one.' },
     ],
     related: ['ac-repair-vadodara', 'ac-service-vadodara', 'fast-ac-repair-vadodara'],
-    guides: ['ac-not-cooling', 'ac-service-cost-vadodara'],
+    guides: ['ac-not-cooling', 'ac-service-cost-vadodara', 'ac-gas-leak-signs'],
   },
   {
     slug: 'ac-installation-vadodara',
@@ -146,7 +146,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Can you move my AC to a new house?', a: 'Yes. We uninstall it, and reinstall it at your new home in Vadodara with a leak check.' },
     ],
     related: ['ac-service-vadodara', 'ac-gas-filling-vadodara', 'central-ac-service-vadodara'],
-    guides: ['ac-service-cost-vadodara', 'how-often-service-ac'],
+    guides: ['ac-service-cost-vadodara', 'how-often-service-ac', 'inverter-vs-non-inverter-ac'],
   },
   {
     slug: 'premium-ac-service-vadodara',
@@ -270,7 +270,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'How much does fridge repair cost in Vadodara?', a: 'Fridge repair starts from ₹400. Gas filling starts from ₹2,500. You get the full price before any work.' },
     ],
     related: ['washing-machine-repair-vadodara', 'ac-repair-vadodara'],
-    guides: [],
+    guides: ['fridge-not-cooling'],
   },
   {
     slug: 'washing-machine-repair-vadodara',
@@ -292,7 +292,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'How much does washing machine repair cost?', a: 'Repair starts from ₹350 and a general service from ₹299. Parts are quoted before work.' },
     ],
     related: ['refrigerator-repair-vadodara', 'ac-repair-vadodara'],
-    guides: [],
+    guides: ['washing-machine-not-draining'],
   },
 ]
 

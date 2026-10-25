@@ -38,9 +38,10 @@ export default function Footer() {
               </ul>
               <h2 style={{ marginTop: 20 }}>AC guides</h2>
               <ul>
-                {GUIDES.map(g => (
+                {GUIDES.slice(0, 5).map(g => (
                   <li key={g.slug}><Link href={`/guides/${g.slug}`}>{g.title}</Link></li>
                 ))}
+                <li><Link href="/guides">All AC guides</Link></li>
               </ul>
             </div>
             <div>
