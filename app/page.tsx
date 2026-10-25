@@ -3,9 +3,10 @@ import Link from 'next/link'
 import Hero from '@/components/Hero'
 import ServicesPreview from '@/components/ServicesPreview'
 import { AREAS, BRANDS, PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/site'
+import PopularServices from '@/components/PopularServices'
 
 export const metadata: Metadata = {
-  title: { absolute: 'AC Repair and Service in Vadodara | Relax Aircon' },
+  title: { absolute: 'AC Service and Repair in Vadodara | Same-Day, From ₹350 | Relax Aircon' },
   alternates: { canonical: '/' },
 }
 
@@ -29,6 +30,7 @@ export default function Home() {
             Home and commercial appliances, all major brands. Prices are labour starting rates.
           </p>
           <ServicesPreview headingLevel="h3" />
+          <PopularServices />
         </div>
       </section>
 

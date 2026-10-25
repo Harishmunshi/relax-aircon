@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import PublicOnly from '@/components/PublicOnly'
+import { LANDING_PAGES } from '@/lib/landing'
 import {
-  SERVICES, AREAS, HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, FOUNDED, MAPS_LINK, whatsappLink,
+  AREAS, HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, FOUNDED, MAPS_LINK, whatsappLink,
 } from '@/lib/site'
 
 export default function Footer() {
@@ -20,9 +21,10 @@ export default function Footer() {
             <div>
               <h2>Services</h2>
               <ul>
-                {SERVICES.map(s => (
-                  <li key={s.id}><Link href={`/services#${s.id}`}>{s.name}</Link></li>
+                {LANDING_PAGES.slice(0, 8).map(p => (
+                  <li key={p.slug}><Link href={`/${p.slug}`}>{p.label} Vadodara</Link></li>
                 ))}
+                <li><Link href="/services">All services and prices</Link></li>
               </ul>
             </div>
             <div>

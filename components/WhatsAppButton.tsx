@@ -1,12 +1,14 @@
 import PublicOnly from '@/components/PublicOnly'
-import { whatsappLink } from '@/lib/site'
+import { PHONE_TEL, whatsappLink } from '@/lib/site'
 
+/** Sticky Call / WhatsApp bar at the bottom of the screen on phones. */
 export default function WhatsAppButton() {
   return (
     <PublicOnly>
-      <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="wa-float">
-        WhatsApp us
-      </a>
+      <div className="mobile-bar">
+        <a href={`tel:${PHONE_TEL}`} className="call">Call now</a>
+        <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="wa">WhatsApp</a>
+      </div>
     </PublicOnly>
   )
 }

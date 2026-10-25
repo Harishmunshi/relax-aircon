@@ -190,8 +190,16 @@ img { max-width: 100%; display: block; }
 .footer-bottom { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--ink-3); font-size: 0.875rem; }
 .footer-bottom a { color: var(--ink-3); }
 
-/* Floating WhatsApp (mobile only) */
-.wa-float { display: none; }
+/* Breadcrumb and FAQ */
+.breadcrumb { color: var(--ink-3); }
+.breadcrumb a { color: var(--ink-2); }
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); padding: 4px 0; }
+.faq summary { cursor: pointer; font-weight: 600; padding: 14px 0; list-style-position: outside; }
+.faq details p { margin: 0 0 16px; }
+
+/* Mobile call bar (mobile only) */
+.mobile-bar { display: none; }
 
 /* Staff area */
 .staff-bar { background: var(--ink); color: #f2efe8; }
@@ -237,9 +245,13 @@ img { max-width: 100%; display: block; }
   .form-row { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-  .wa-float { display: inline-flex; position: fixed; right: 16px; bottom: 16px; z-index: 60; background: #1f7a4d; color: #fff; padding: 12px 16px; border-radius: var(--radius); font-weight: 600; text-decoration: none; }
-  .wa-float:hover { color: #fff; }
-  body { padding-bottom: 64px; }
+  .mobile-bar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--surface); border-top: 1px solid var(--line); padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); gap: 8px; }
+  .mobile-bar a { display: flex; align-items: center; justify-content: center; min-height: 48px; border-radius: var(--radius); font-weight: 600; text-decoration: none; font-size: 1rem; }
+  .mobile-bar .call { background: var(--accent); color: #fff; }
+  .mobile-bar .wa { background: #1f7a4d; color: #fff; }
+  body { padding-bottom: 72px; }
+  .btn { min-height: 48px; }
+  .hero { padding: 36px 0 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }

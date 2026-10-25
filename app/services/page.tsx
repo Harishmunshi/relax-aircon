@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import ServicesPreview from '@/components/ServicesPreview'
+import PopularServices from '@/components/PopularServices'
 import { PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function ServicesPage() {
           <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a> and describe the problem.
         </p>
         <ServicesPreview />
+        <PopularServices />
         <div className="two-col" style={{ marginTop: 48 }}>
           <div>
             <h2>How pricing works</h2>

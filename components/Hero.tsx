@@ -16,11 +16,11 @@ export default function Hero() {
     <section className="hero">
       <div className="wrap hero-grid">
         <div>
-          <span className="eyebrow">AC, fridge and washing machine service in Vadodara</span>
-          <h1>AC not cooling? We can usually be there today.</h1>
+          <span className="eyebrow">AC not cooling? We can usually be there today.</span>
+          <h1>AC service and repair in Vadodara</h1>
           <p className="lead">
-            Relax Aircon repairs, services and installs air conditioners, refrigerators and washing
-            machines across Vadodara. You talk directly to the owner, Azhar Munshi, and you get the
+            Relax Aircon offers fast, premium AC service, AC repair, gas filling and installation, plus
+            refrigerator and washing machine repair, at your home across Vadodara. You talk directly to the owner, Azhar Munshi, and you get the
             price before work starts.
           </p>
           <div className="btn-row" style={{ marginTop: 28 }}>

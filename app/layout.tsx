@@ -12,12 +12,12 @@ const sans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '
 const serif = Source_Serif_4({ subsets: ['latin'], weight: ['600', '700'], variable: '--font-serif', display: 'swap' })
 
 const description =
-  'AC, refrigerator and washing machine repair, service and installation in Vadodara. Same-day visits, clear prices, emergency help. Call +91 70432 45355.'
+  'AC service and AC repair in Vadodara at home: gas filling, installation, AMC, plus fridge and washing machine repair. Same-day visits, price before work. Call +91 70432 45355.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'AC Repair and Service in Vadodara | Relax Aircon',
+    default: 'AC Service and Repair in Vadodara | Same-Day | Relax Aircon',
     template: '%s | Relax Aircon',
   },
   description,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: SITE_URL,
     siteName: BUSINESS_NAME,
-    title: 'AC Repair and Service in Vadodara | Relax Aircon',
+    title: 'AC Service and Repair in Vadodara | Relax Aircon',
     description,
   },
   twitter: { card: 'summary_large_image', title: 'Relax Aircon, Vadodara', description },
