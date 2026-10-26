@@ -1,179 +1,140 @@
 'use client'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { slotLabel, normalizePhone } from '@/lib/booking'
 
-const BOOKINGS = [
-  { id: '1', name: 'Mehul Shah', phone: '9909090909', address: 'Alkapuri, Vadodara', service: 'AC Repair', ac: 'Split AC', date: '2025-06-10', time: '10AM–12PM', status: 'pending' },
-  { id: '2', name: 'Priya Desai', phone: '9898989898', address: 'Fatehgunj, Vadodara', service: 'Gas Refill', ac: 'Window AC', date: '2025-06-10', time: '2PM–4PM', status: 'completed' },
-  { id: '3', name: 'Amit Trivedi', phone: '9090909090', address: 'Manjalpur, Vadodara', service: 'Deep Cleaning', ac: 'Split AC', date: '2025-06-10', time: '11AM–1PM', status: 'in-progress' },
-  { id: '4', name: 'Sneha Joshi', phone: '9876543210', address: 'Gotri, Vadodara', service: 'Installation', ac: 'Cassette AC', date: '2025-06-11', time: '9AM–11AM', status: 'pending' },
+type Booking = {
+  id: string; name: string; phone: string; address: string
+  appliance: string | null; service: string | null; problem: string | null
+  booking_date: string; slot: string; status: 'pending' | 'confirmed' | 'completed' | 'cancelled'
+}
+
+const FILTERS = [
+  { id: 'upcoming', label: 'Upcoming' },
+  { id: 'pending', label: 'Pending' },
+  { id: 'confirmed', label: 'Confirmed' },
+  { id: 'completed', label: 'Completed' },
+  { id: 'cancelled', label: 'Cancelled' },
+  { id: 'all', label: 'All' },
 ]
-const TECHS = [
-  { id: 't1', name: 'Ravi Patel', phone: '9876543210', available: true, jobs: 142, rating: 4.9 },
-  { id: 't2', name: 'Suresh Kumar', phone: '9876543211', available: false, jobs: 98, rating: 4.8 },
-  { id: 't3', name: 'Deepak Shah', phone: '9876543212', available: true, jobs: 76, rating: 4.7 },
-]
 
-export default function AdminDashboard() {
-  const [bookings, setBookings] = useState(BOOKINGS)
-  const [tab, setTab] = useState('overview')
+const BADGE: Record<string, string> = { pending: 'badge-pending', confirmed: 'badge-progress', completed: 'badge-done', cancelled: '' }
 
-  const stats = {
-    total: bookings.length,
-    pending: bookings.filter(b => b.status === 'pending').length,
-    inProgress: bookings.filter(b => b.status === 'in-progress').length,
-    completed: bookings.filter(b => b.status === 'completed').length,
+// Next action for each status: [label, new status, button class]
+const ACTIONS: Record<string, [string, string, string][]> = {
+  pending: [['Confirm', 'confirmed', 'btn-primary'], ['Cancel', 'cancelled', 'btn-outline']],
+  confirmed: [['Mark complete', 'completed', 'btn-primary'], ['Cancel', 'cancelled', 'btn-outline']],
+  completed: [],
+  cancelled: [['Restore', 'pending', 'btn-outline']],
+}
+
+function prettyDate(d: string, today: string) {
+  const label = new Intl.DateTimeFormat('en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${d}T00:00:00Z`))
+  return d === today ? `Today, ${label}` : label
+}
+
+export default function AdminBookings() {
+  const [filter, setFilter] = useState('upcoming')
+  const [bookings, setBookings] = useState<Booking[] | null>(null)
+  const [counts, setCounts] = useState<Record<string, number>>({})
+  const [today, setToday] = useState('')
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState<string | null>(null)
+
+  const load = useCallback(async () => {
+    setError('')
+    try {
+      const res = await fetch(`/api/admin/bookings?filter=${filter}`, { cache: 'no-store' })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Could not load bookings')
+      setBookings(json.bookings)
+      setCounts(json.counts)
+      setToday(json.today)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Could not load bookings')
+      setBookings([])
+    }
+  }, [filter])
+
+  useEffect(() => { setBookings(null); load() }, [load])
+
+  const setStatus = async (id: string, status: string) => {
+    setBusy(id)
+    setError('')
+    try {
+      const res = await fetch(`/api/admin/bookings/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status }),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(json.error || 'Update failed')
+      await load()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Update failed')
+    }
+    setBusy(null)
   }
 
-  const updateStatus = (id: string, status: string) => setBookings(p => p.map(b => b.id === id ? { ...b, status } : b))
-
-  const C = { dark: '#020c18', card: 'rgba(7,30,52,0.8)', border: 'rgba(0,180,255,0.15)', ice: '#00d4ff', muted: '#7ba8c4', white: '#f0f8ff' }
+  const stats: [string, number][] = [
+    ['Pending', counts.pending ?? 0], ['Confirmed', counts.confirmed ?? 0],
+    ['Completed', counts.completed ?? 0], ['Cancelled', counts.cancelled ?? 0],
+  ]
 
   return (
-    <div style={{ minHeight: '100vh', background: C.dark, color: C.white }}>
-      <div style={{ background: 'rgba(255,255,255,0.04)', borderBottom: `1px solid ${C.border}`, padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 40, backdropFilter: 'blur(20px)' }}>
-        <div>
-          <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '1.2rem', fontWeight: 600 }}>❄️ Relax Aircon — Admin</div>
-          <div style={{ color: C.muted, fontSize: '0.75rem' }}>Welcome, Azhar Munshi</div>
-        </div>
-      </div>
+    <main className="section" style={{ paddingTop: 32 }}>
+      <div className="wrap">
+        <h1 style={{ fontSize: '1.8rem' }}>Bookings</h1>
 
-      <div style={{ background: '#fbf4e2', color: '#6b4a00', padding: '10px 24px', fontSize: '0.85rem' }}>Sample data. Bookings are not connected to a database yet, so changes here are not saved.</div>
-      <div style={{ padding: 24 }}>
-        {/* Stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 24 }}>
-          {[['Total',stats.total,'#00d4ff'],['Pending',stats.pending,'#f59e0b'],['In Progress',stats.inProgress,'#3b82f6'],['Completed',stats.completed,'#10b981']].map(([l,v,c]) => (
-            <div key={l as string} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, padding: 20 }}>
-              <div style={{ fontSize: '2rem', fontWeight: 700, color: c as string }}>{v}</div>
-              <div style={{ color: C.muted, fontSize: '0.8rem', marginTop: 4 }}>{l}</div>
-            </div>
+        <div className="stat-row">
+          {stats.map(([label, n]) => (
+            <div key={label} className="stat"><div className="num">{bookings === null ? '–' : n}</div><div className="lbl">{label}</div></div>
           ))}
         </div>
 
-        {/* Revenue */}
-        <div style={{ background: 'linear-gradient(135deg,rgba(0,153,204,0.1),rgba(0,100,160,0.08))', border: `1px solid rgba(0,180,255,0.2)`, borderRadius: 16, padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-          <div>
-            <div style={{ color: C.muted, fontSize: '0.75rem', marginBottom: 4 }}>ESTIMATED REVENUE</div>
-            <div style={{ fontSize: '2.5rem', fontWeight: 700, color: C.ice }}>₹{(stats.completed * 1200).toLocaleString()}</div>
-            <div style={{ color: C.muted, fontSize: '0.8rem' }}>Avg ₹1,200/job × {stats.completed} completed</div>
-          </div>
-          <div style={{ fontSize: '3rem' }}>💰</div>
-        </div>
-
-        {/* Tabs */}
-        <div style={{ display: 'flex', gap: 4, background: 'rgba(255,255,255,0.04)', padding: 4, borderRadius: 12, width: 'fit-content', marginBottom: 24 }}>
-          {['overview','bookings','technicians'].map(t => (
-            <button key={t} onClick={() => setTab(t)} style={{ padding: '8px 20px', borderRadius: 10, border: 'none', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 500, textTransform: 'capitalize' as const, fontFamily: 'inherit', background: tab === t ? 'linear-gradient(135deg,#00d4ff,#0099cc)' : 'transparent', color: tab === t ? C.dark : C.muted }}>
-              {t}
-            </button>
+        <div className="tabs" role="tablist" aria-label="Filter bookings">
+          {FILTERS.map(f => (
+            <button key={f.id} role="tab" aria-selected={filter === f.id} onClick={() => setFilter(f.id)}>{f.label}</button>
           ))}
         </div>
 
-        {/* OVERVIEW */}
-        {tab === 'overview' && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, padding: 20 }}>
-              <div style={{ fontWeight: 600, marginBottom: 16 }}>Technician Status</div>
-              {TECHS.map(t => (
-                <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 0', borderBottom: `1px solid rgba(0,180,255,0.08)` }}>
-                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#00d4ff,#0099cc)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: C.dark }}>{t.name[0]}</div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ color: C.white, fontSize: '0.9rem', fontWeight: 500 }}>{t.name}</div>
-                    <div style={{ color: C.muted, fontSize: '0.75rem' }}>{t.jobs} jobs • ⭐{t.rating}</div>
-                  </div>
-                  <span style={{ fontSize: '0.7rem', padding: '3px 10px', borderRadius: 50, background: t.available ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)', color: t.available ? '#10b981' : '#ef4444' }}>{t.available ? 'Free' : 'Busy'}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, padding: 20 }}>
-              <div style={{ fontWeight: 600, marginBottom: 16 }}>Recent Bookings</div>
-              {bookings.slice(0, 4).map(b => (
-                <div key={b.id} style={{ padding: '10px 0', borderBottom: `1px solid rgba(0,180,255,0.08)` }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ color: C.white, fontSize: '0.85rem', fontWeight: 500 }}>{b.name}</div>
-                      <div style={{ color: C.muted, fontSize: '0.75rem' }}>{b.service} • {b.date}</div>
-                    </div>
-                    <span style={{ fontSize: '0.65rem', padding: '3px 8px', borderRadius: 50, background: b.status === 'pending' ? 'rgba(245,158,11,0.15)' : b.status === 'in-progress' ? 'rgba(59,130,246,0.15)' : 'rgba(16,185,129,0.15)', color: b.status === 'pending' ? '#f59e0b' : b.status === 'in-progress' ? '#3b82f6' : '#10b981' }}>{b.status}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {error && <p className="notice notice-error" role="alert">{error}</p>}
+
+        {bookings === null && (
+          <div aria-label="Loading bookings">
+            {[0, 1, 2].map(i => <div key={i} className="skeleton" style={{ height: 88, marginBottom: 12 }} />)}
           </div>
         )}
 
-        {/* BOOKINGS */}
-        {tab === 'bookings' && (
-          <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, overflow: 'hidden' }}>
-            <div style={{ padding: '16px 20px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ fontWeight: 600 }}>All Bookings ({bookings.length})</span>
-            </div>
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ borderBottom: `1px solid ${C.border}` }}>
-                    {['Customer','Service','Date','Status','Action'].map(h => (
-                      <th key={h} style={{ textAlign: 'left', padding: '12px 16px', color: C.muted, fontSize: '0.75rem', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase' as const, fontFamily: 'inherit' }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {bookings.map(b => (
-                    <tr key={b.id} style={{ borderBottom: `1px solid rgba(0,180,255,0.05)` }}>
-                      <td style={{ padding: '12px 16px' }}>
-                        <div style={{ color: C.white, fontSize: '0.85rem', fontWeight: 500 }}>{b.name}</div>
-                        <div style={{ color: C.muted, fontSize: '0.75rem' }}>{b.phone}</div>
-                      </td>
-                      <td style={{ padding: '12px 16px' }}>
-                        <div style={{ color: C.ice, fontSize: '0.85rem' }}>{b.service}</div>
-                        <div style={{ color: C.muted, fontSize: '0.75rem' }}>{b.ac}</div>
-                      </td>
-                      <td style={{ padding: '12px 16px', color: C.white, fontSize: '0.85rem' }}>{b.date}</td>
-                      <td style={{ padding: '12px 16px' }}>
-                        <span style={{ fontSize: '0.7rem', padding: '4px 10px', borderRadius: 50, background: b.status === 'pending' ? 'rgba(245,158,11,0.15)' : b.status === 'in-progress' ? 'rgba(59,130,246,0.15)' : 'rgba(16,185,129,0.15)', color: b.status === 'pending' ? '#f59e0b' : b.status === 'in-progress' ? '#3b82f6' : '#10b981' }}>{b.status}</span>
-                      </td>
-                      <td style={{ padding: '12px 16px' }}>
-                        {b.status === 'pending' && <button onClick={() => updateStatus(b.id, 'in-progress')} style={{ background: 'rgba(0,212,255,0.1)', border: `1px solid rgba(0,212,255,0.3)`, color: C.ice, padding: '6px 14px', borderRadius: 8, cursor: 'pointer', fontSize: '0.75rem', fontFamily: 'inherit' }}>Accept</button>}
-                        {b.status === 'in-progress' && <button onClick={() => updateStatus(b.id, 'completed')} style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)', color: '#10b981', padding: '6px 14px', borderRadius: 8, cursor: 'pointer', fontSize: '0.75rem', fontFamily: 'inherit' }}>Complete</button>}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+        {bookings && bookings.length === 0 && !error && (
+          <div className="panel" style={{ textAlign: 'center' }}>
+            <p style={{ margin: 0 }}><strong>No bookings here yet.</strong></p>
+            <p className="muted" style={{ margin: '4px 0 0' }}>New online bookings appear here as soon as customers submit them.</p>
           </div>
         )}
 
-        {/* TECHNICIANS */}
-        {tab === 'technicians' && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))', gap: 16 }}>
-            {TECHS.map(t => (
-              <div key={t.id} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 20, padding: 24 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-                  <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'linear-gradient(135deg,#00d4ff,#0099cc)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: C.dark, fontSize: '1.2rem' }}>{t.name[0]}</div>
-                  <div>
-                    <div style={{ color: C.white, fontWeight: 600 }}>{t.name}</div>
-                    <div style={{ color: C.muted, fontSize: '0.75rem' }}>{t.phone}</div>
-                  </div>
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, textAlign: 'center' }}>
-                  <div style={{ background: 'rgba(0,180,255,0.06)', borderRadius: 10, padding: 10 }}>
-                    <div style={{ color: C.ice, fontWeight: 700 }}>{t.jobs}</div>
-                    <div style={{ color: C.muted, fontSize: '0.7rem' }}>Jobs</div>
-                  </div>
-                  <div style={{ background: 'rgba(0,180,255,0.06)', borderRadius: 10, padding: 10 }}>
-                    <div style={{ color: '#f59e0b', fontWeight: 700 }}>⭐{t.rating}</div>
-                    <div style={{ color: C.muted, fontSize: '0.7rem' }}>Rating</div>
-                  </div>
-                  <div style={{ background: 'rgba(0,180,255,0.06)', borderRadius: 10, padding: 10 }}>
-                    <div style={{ color: t.available ? '#10b981' : '#ef4444', fontWeight: 700, fontSize: '0.75rem' }}>{t.available ? 'FREE' : 'BUSY'}</div>
-                    <div style={{ color: C.muted, fontSize: '0.7rem' }}>Status</div>
-                  </div>
-                </div>
+        {bookings && bookings.map(b => (
+          <article key={b.id} className="panel booking-card" style={{ marginBottom: 12, opacity: b.status === 'cancelled' ? 0.7 : 1 }}>
+            <div className="booking-head">
+              <div>
+                <strong>{prettyDate(b.booking_date, today)}</strong>, {slotLabel(b.slot)}
               </div>
-            ))}
-          </div>
-        )}
+              <span className={`badge ${BADGE[b.status]}`}>{b.status}</span>
+            </div>
+            <p style={{ margin: '8px 0 0' }}>
+              <strong>{b.name}</strong> · {b.service || 'Service not chosen'}{b.appliance ? ` · ${b.appliance}` : ''}
+            </p>
+            <p className="muted small" style={{ margin: '4px 0 0' }}>{b.address}</p>
+            {b.problem && <p className="small" style={{ margin: '4px 0 0' }}>Problem: {b.problem}</p>}
+            <div className="btn-row" style={{ marginTop: 12 }}>
+              <a href={`tel:+91${normalizePhone(b.phone)}`} className="btn btn-outline">Call {b.phone}</a>
+              <a href={`https://wa.me/91${normalizePhone(b.phone)}?text=${encodeURIComponent(`Hi ${b.name}, this is Relax Aircon about your booking on ${b.booking_date}, ${slotLabel(b.slot)}.`)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline">WhatsApp</a>
+              {ACTIONS[b.status].map(([label, next, cls]) => (
+                <button key={next} className={`btn ${cls}`} disabled={busy === b.id} onClick={() => setStatus(b.id, next)}>{label}</button>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
-    </div>
+    </main>
   )
 }

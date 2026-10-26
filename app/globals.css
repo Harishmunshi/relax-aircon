@@ -204,9 +204,10 @@ img { max-width: 100%; display: block; }
 
 /* Staff area */
 .staff-bar { background: var(--ink); color: #f2efe8; }
-.staff-bar .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; gap: 12px; }
+.staff-bar .wrap { display: flex; justify-content: space-between; align-items: center; min-height: 56px; padding-top: 8px; padding-bottom: 8px; gap: 8px 16px; flex-wrap: wrap; }
 .staff-bar a, .staff-bar button { color: #f2efe8; }
-.staff-nav { display: flex; gap: 20px; align-items: center; font-size: 0.92rem; }
+.staff-nav { display: flex; gap: 8px 16px; align-items: center; flex-wrap: wrap; font-size: 0.92rem; }
+.staff-bar strong { white-space: nowrap; }
 .staff-nav button { background: none; border: 1px solid #6b7783; border-radius: var(--radius); padding: 6px 12px; font: inherit; cursor: pointer; }
 .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
 .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
@@ -220,8 +221,8 @@ img { max-width: 100%; display: block; }
 .badge-pending { color: #8a5a00; border-color: #e3cf9f; background: #fbf4e2; }
 .badge-progress { color: var(--accent); border-color: #c3d2e6; background: var(--accent-soft); }
 .badge-done { color: var(--ok); border-color: #c4dcc7; background: #edf5ee; }
-.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
-.tabs button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 14px; font: inherit; cursor: pointer; color: var(--ink-2); }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 20px; overflow-x: auto; }
+.tabs button { white-space: nowrap; background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 14px; font: inherit; cursor: pointer; color: var(--ink-2); }
 .tabs button[aria-selected='true'] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
 .skeleton { background: linear-gradient(90deg, #ece8df 0%, #f5f2ec 50%, #ece8df 100%); background-size: 200% 100%; animation: shimmer 1.2s infinite linear; border-radius: 4px; height: 14px; }
 @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
@@ -271,3 +272,7 @@ img { max-width: 100%; display: block; }
 .link-btn { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font: inherit; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 @media (max-width: 440px) { .slot-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Admin bookings */
+.booking-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.booking-card .btn { padding: 8px 14px; min-height: 40px; font-size: 0.875rem; }
