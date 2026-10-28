@@ -218,7 +218,7 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: 'washing-machine-not-draining',
-    title: 'Washing Machine Not Draining or Spinning: Fixes',
+    title: 'Washing Machine Not Draining or Spinning',
     description: 'Washing machine not draining water or not spinning? Common causes, what to check at home, and when a repair is needed in Vadodara.',
     h1: 'Washing machine not draining or spinning? What to check',
     intro: 'When a washing machine stops draining or spinning, clothes stay soaked and the door may not unlock. Many cases are a blockage you can clear yourself.',

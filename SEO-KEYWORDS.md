@@ -46,3 +46,17 @@ Hashtags do **not** help Google Search ranking, so they are not on the website. 
 3. **Listings.** Add the business to Justdial, Sulekha, IndiaMART and Facebook with exactly the same name, phone and address. Each one links back to the site.
 4. **Real photos.** Before/after photos of jobs on the site and on Google Business.
 5. **Patience.** New pages usually take 2 to 8 weeks to start ranking. Check Search Console → Performance monthly.
+
+## Low-competition long-tail targets (next guides to write)
+
+Long, specific searches have fewer competitors, so a good page can rank faster. Each one below would be a short guide linking to the matching service page. Only write the ones that match work Azhar really does.
+
+- "ac not cooling in summer vadodara" and "ac blowing hot air what to do"
+- "ac making noise when starting" and "ac outdoor unit not starting"
+- "ac remote not working / how to reset" and "ac error code E1 / E4 / F1 meaning"
+- "how to clean ac filter at home" and "ac smell bad when switched on"
+- "1 ton vs 1.5 ton ac for bedroom" and "best temperature to set ac at night"
+- "ac gas filling price in vadodara 2026" (price pages rank well, keep prices current)
+- "fridge water leaking from bottom" and "fridge making noise"
+- "washing machine shaking during spin" and "washing machine door not opening"
+- "ac service near alkapuri / gotri / manjalpur" (already covered by the area pages)

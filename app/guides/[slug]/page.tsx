@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { GUIDES, guideBySlug } from '@/lib/guides'
 import { landingBySlug } from '@/lib/landing'
-import { SITE_URL, BUSINESS_NAME, PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
+import { SITE_URL, BUSINESS_NAME, OWNER, PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 
 export const dynamicParams = false
 
@@ -48,6 +48,10 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           <Link href="/">Home</Link> / <Link href="/guides">AC help guides</Link>
         </nav>
         <h1 style={{ marginTop: 16 }}>{g.h1}</h1>
+        <p className="muted small" style={{ marginTop: -4 }}>
+          By {BUSINESS_NAME}, Vadodara · Updated {new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(g.published))} ·{' '}
+          <Link href="/about">About {OWNER}, the owner</Link>
+        </p>
         <p className="lead">{g.intro}</p>
         {g.sections.map(s => (
           <section key={s.heading}>
