@@ -25,7 +25,7 @@ const button = (href: string, label: string, bg: string) =>
  */
 export async function emailOwner(b: BookingRecord) {
   const key = process.env.RESEND_API_KEY
-  const to = process.env.BOOKING_NOTIFY_EMAIL
+  const to = process.env.BOOKING_NOTIFY_EMAIL // one address, or several separated by commas
   if (!key || !to) return false
 
   const when = `${b.booking_date}, ${slotLabel(b.slot)}`
@@ -69,7 +69,7 @@ export async function emailOwner(b: BookingRecord) {
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: process.env.BOOKING_FROM_EMAIL || 'Relax Aircon <onboarding@resend.dev>',
-        to: [to],
+        to: to.split(',').map(a => a.trim()).filter(Boolean),
         subject: `New booking: ${b.name}, ${when}`,
         html,
         text,
