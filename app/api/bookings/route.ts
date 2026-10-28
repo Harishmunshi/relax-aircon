@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSql } from '@/lib/db'
-import { emailOwner } from '@/lib/notify'
+import { emailCustomer, emailOwner } from '@/lib/notify'
 import { isDateString, normalizePhone, slotBookable, validPhone } from '@/lib/booking'
 
 const text = (v: unknown, max: number) => (typeof v === 'string' ? v.trim().slice(0, max) : '')
@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
   const problem = text(body.problem, 500) || null
   const date = body.date
   const slot = text(body.slot, 10)
+  const email = text(body.email, 254)
 
   const fields: Record<string, string> = {}
   if (name.length < 2) fields.name = 'Please enter your name'
@@ -33,6 +34,7 @@ export async function POST(req: NextRequest) {
   if (address.length < 5) fields.address = 'Please enter your area and street'
   if (!isDateString(date)) fields.date = 'Please choose a date'
   if (!slot) fields.slot = 'Please choose a time slot'
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fields.email = 'Enter a valid email address or leave it empty'
   if (Object.keys(fields).length > 0) return NextResponse.json({ error: 'Validation failed', fields }, { status: 422 })
 
   if (!slotBookable(date as string, slot)) {
@@ -50,6 +52,8 @@ export async function POST(req: NextRequest) {
       RETURNING id, name, phone, address, appliance, service, problem, to_char(booking_date, 'YYYY-MM-DD') AS booking_date, slot`
     const booking = rows[0] as Parameters<typeof emailOwner>[0]
     const emailed = await emailOwner(booking)
+    // The customer's email is used once for the confirmation and is not stored.
+    if (email) await emailCustomer(booking, email)
     return NextResponse.json({ ok: true, id: booking.id, emailed }, { status: 201 })
   } catch (e: unknown) {
     const code = (e as { code?: string }).code

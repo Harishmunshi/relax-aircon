@@ -1,78 +1,87 @@
 'use client'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { slotLabel, normalizePhone } from '@/lib/booking'
 
-const JOBS = [
-  { id: 'j1', customer: 'Mehul Shah', phone: '9909090909', address: 'Alkapuri, Vadodara', service: 'AC Repair', ac: 'Split AC', date: '2025-06-10', time: '10AM–12PM', problem: 'Not cooling', status: 'assigned' },
-  { id: 'j2', customer: 'Sneha Joshi', phone: '9876543210', address: 'Gotri, Vadodara', service: 'Deep Cleaning', ac: 'Split AC', date: '2025-06-10', time: '2PM–4PM', problem: 'Annual cleaning', status: 'assigned' },
-  { id: 'j3', customer: 'Kiran Patel', phone: '9988776655', address: 'Fatehgunj, Vadodara', service: 'Gas Refill', ac: 'Window AC', date: '2025-06-09', time: '11AM–1PM', problem: 'Low cooling', status: 'completed' },
-]
+type Job = {
+  id: string; name: string; phone: string; address: string
+  appliance: string | null; service: string | null; problem: string | null
+  booking_date: string; slot: string
+}
 
-const C = { dark: '#020c18', card: 'rgba(7,30,52,0.8)', border: 'rgba(0,180,255,0.15)', ice: '#00d4ff', muted: '#7ba8c4', white: '#f0f8ff' }
+function prettyDate(d: string, today: string) {
+  const label = new Intl.DateTimeFormat('en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${d}T00:00:00Z`))
+  return d === today ? `Today, ${label}` : label
+}
 
-export default function TechnicianDashboard() {
-  const [jobs, setJobs] = useState(JOBS)
+export default function TechnicianJobs() {
+  const [jobs, setJobs] = useState<Job[] | null>(null)
+  const [today, setToday] = useState('')
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState<string | null>(null)
 
-  const update = (jobId: string, status: string) => setJobs(p => p.map(j => j.id === jobId ? { ...j, status } : j))
+  const load = useCallback(async () => {
+    setError('')
+    try {
+      const res = await fetch('/api/technician/bookings', { cache: 'no-store' })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Could not load jobs')
+      setJobs(json.jobs)
+      setToday(json.today)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Could not load jobs')
+      setJobs([])
+    }
+  }, [])
 
-  const pending = jobs.filter(j => j.status === 'assigned')
-  const done = jobs.filter(j => j.status === 'completed')
+  useEffect(() => { load() }, [load])
+
+  const complete = async (id: string) => {
+    setBusy(id)
+    setError('')
+    try {
+      const res = await fetch('/api/technician/bookings', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(json.error || 'Update failed')
+      await load()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Update failed')
+    }
+    setBusy(null)
+  }
 
   return (
-    <div style={{ minHeight: '100vh', background: C.dark, color: C.white }}>
-      <div style={{ background: 'rgba(255,255,255,0.04)', borderBottom: `1px solid ${C.border}`, padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 40, backdropFilter: 'blur(20px)' }}>
-        <div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.2rem', fontWeight: 600 }}>🔧 Ravi Patel</div>
-          <div style={{ color: C.muted, fontSize: '0.75rem' }}>Technician — Relax Aircon</div>
-        </div>
-        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <span style={{ fontSize: '0.7rem', background: 'rgba(16,185,129,0.15)', color: '#10b981', padding: '4px 12px', borderRadius: 50 }}>● Available</span>
-        </div>
-      </div>
+    <main className="section" style={{ paddingTop: 32 }}>
+      <div className="wrap">
+        <h1 style={{ fontSize: '1.8rem' }}>My jobs</h1>
+        <p className="muted">Confirmed visits, soonest first.</p>
 
-      <div style={{ background: '#fbf4e2', color: '#6b4a00', padding: '10px 24px', fontSize: '0.85rem' }}>Sample data. Jobs are not connected to a database yet, so changes here are not saved.</div>
-      <div style={{ padding: 24 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 28 }}>
-          {[['Today\'s Jobs', jobs.length, C.ice], ['Pending', pending.length, '#f59e0b'], ['Completed', done.length, '#10b981']].map(([l, v, c]) => (
-            <div key={l as string} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, padding: 20 }}>
-              <div style={{ fontSize: '2rem', fontWeight: 700, color: c as string }}>{v}</div>
-              <div style={{ color: C.muted, fontSize: '0.8rem', marginTop: 4 }}>{l}</div>
-            </div>
-          ))}
-        </div>
+        {error && <p className="notice notice-error" role="alert">{error}</p>}
 
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.5rem', color: C.white, marginBottom: 16 }}>Today's Jobs</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          {jobs.map(j => (
-            <div key={j.id} style={{ background: C.card, border: `1px solid ${j.status === 'completed' ? 'rgba(16,185,129,0.2)' : C.border}`, borderRadius: 20, padding: 24 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: '1rem', color: C.white }}>{j.customer}</div>
-                  <a href={`tel:${j.phone}`} style={{ color: C.ice, fontSize: '0.85rem', textDecoration: 'none' }}>📞 {j.phone}</a>
-                </div>
-                <span style={{ fontSize: '0.7rem', padding: '4px 12px', borderRadius: 50, background: j.status === 'completed' ? 'rgba(16,185,129,0.15)' : 'rgba(245,158,11,0.15)', color: j.status === 'completed' ? '#10b981' : '#f59e0b' }}>{j.status}</span>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 16 }}>
-                {[['Service', j.service], ['AC Type', j.ac], ['Time', j.time], ['Problem', j.problem]].map(([k, v]) => (
-                  <div key={k} style={{ background: 'rgba(0,180,255,0.04)', borderRadius: 10, padding: '8px 12px' }}>
-                    <div style={{ color: C.muted, fontSize: '0.7rem', marginBottom: 2 }}>{k}</div>
-                    <div style={{ color: C.white, fontSize: '0.85rem', fontWeight: 500 }}>{v}</div>
-                  </div>
-                ))}
-              </div>
-              <div style={{ background: 'rgba(0,180,255,0.04)', borderRadius: 10, padding: '8px 12px', marginBottom: 14 }}>
-                <div style={{ color: C.muted, fontSize: '0.7rem', marginBottom: 2 }}>Address</div>
-                <div style={{ color: C.white, fontSize: '0.85rem' }}>📍 {j.address}</div>
-              </div>
-              {j.status !== 'completed' && (
-                <div style={{ display: 'flex', gap: 10 }}>
-                  <a href={`https://wa.me/91${j.phone}`} target="_blank" style={{ flex: 1, background: 'rgba(37,211,102,0.1)', border: '1px solid rgba(37,211,102,0.3)', color: '#25d366', padding: '10px', borderRadius: 12, textAlign: 'center', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 600 }}>WhatsApp</a>
-                  <button onClick={() => update(j.id, 'completed')} style={{ flex: 1, background: 'linear-gradient(135deg,#10b981,#059669)', color: 'white', border: 'none', padding: '10px', borderRadius: 12, cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700, fontFamily: 'inherit' }}>✅ Mark Complete</button>
-                </div>
-              )}
+        {jobs === null && [0, 1].map(i => <div key={i} className="skeleton" style={{ height: 96, marginBottom: 12 }} />)}
+
+        {jobs && jobs.length === 0 && !error && (
+          <div className="panel" style={{ textAlign: 'center' }}>
+            <p style={{ margin: 0 }}><strong>No confirmed jobs right now.</strong></p>
+            <p className="muted" style={{ margin: '4px 0 0' }}>Jobs appear here once the office confirms a booking.</p>
+          </div>
+        )}
+
+        {jobs && jobs.map(j => (
+          <article key={j.id} className="panel booking-card" style={{ marginBottom: 12 }}>
+            <div className="booking-head">
+              <div><strong>{prettyDate(j.booking_date, today)}</strong>, {slotLabel(j.slot)}</div>
             </div>
-          ))}
-        </div>
+            <p style={{ margin: '8px 0 0' }}><strong>{j.name}</strong> · {j.service || 'Service not chosen'}{j.appliance ? ` · ${j.appliance}` : ''}</p>
+            <p className="muted small" style={{ margin: '4px 0 0' }}>{j.address}</p>
+            {j.problem && <p className="small" style={{ margin: '4px 0 0' }}>Problem: {j.problem}</p>}
+            <div className="btn-row" style={{ marginTop: 12 }}>
+              <a href={`tel:+91${normalizePhone(j.phone)}`} className="btn btn-outline">Call {j.phone}</a>
+              <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${j.address}, Vadodara`)}`} target="_blank" rel="noopener noreferrer" className="btn btn-outline">Open in Maps</a>
+              <button className="btn btn-primary" disabled={busy === j.id} onClick={() => complete(j.id)}>Mark complete</button>
+            </div>
+          </article>
+        ))}
       </div>
-    </div>
+    </main>
   )
 }

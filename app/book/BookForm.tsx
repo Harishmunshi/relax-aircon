@@ -7,7 +7,7 @@ import { MAX_DAYS_AHEAD, addDays, slotLabel, validPhone } from '@/lib/booking'
 
 const APPLIANCES = ['Split AC', 'Window AC', 'Cassette AC', 'Central AC', 'Tower AC', 'Refrigerator', 'Washing machine', 'Deep freezer', 'Water cooler']
 
-type Form = { name: string; phone: string; address: string; appliance: string; service: string; problem: string; date: string; slot: string; website: string }
+type Form = { name: string; phone: string; email: string; address: string; appliance: string; service: string; problem: string; date: string; slot: string; website: string }
 type Errors = Partial<Record<keyof Form | 'form', string>>
 type SlotInfo = { id: string; label: string; available: boolean; reason: 'booked' | 'unavailable' | null }
 
@@ -19,7 +19,7 @@ export default function BookForm() {
   const params = useSearchParams()
   const preset = params.get('service') ?? ''
   const [form, setForm] = useState<Form>({
-    name: '', phone: '', address: '', appliance: '', problem: '', date: '', slot: '', website: '',
+    name: '', phone: '', email: '', address: '', appliance: '', problem: '', date: '', slot: '', website: '',
     service: preset.slice(0, 60),
   })
   const [errors, setErrors] = useState<Errors>({})
@@ -121,7 +121,7 @@ export default function BookForm() {
       ) : (
         <p>
           Your slot is reserved for <strong>{form.date}</strong>, <strong>{slotLabel(form.slot)}</strong>.
-          We will call you on {form.phone} to confirm.
+          We will call you on {form.phone} to confirm.{form.email ? ` A confirmation email is on its way to ${form.email}.` : ''}
         </p>
       )}
       <div className="btn-row">
@@ -148,6 +148,7 @@ export default function BookForm() {
         {field('name', 'Full name (required)', <input {...aria('name')} autoComplete="name" maxLength={80} value={form.name} onChange={e => set('name', e.target.value)} />)}
         {field('phone', 'Mobile number (required)', <input {...aria('phone')} type="tel" inputMode="tel" autoComplete="tel" maxLength={16} placeholder="98765 43210" value={form.phone} onChange={e => set('phone', e.target.value)} />)}
       </div>
+      {field('email', 'Email for a confirmation (optional)', <input {...aria('email')} type="email" autoComplete="email" maxLength={254} placeholder="name@example.com" value={form.email} onChange={e => set('email', e.target.value)} />)}
       {field('address', 'Address in Vadodara (required)', <textarea {...aria('address')} rows={2} maxLength={300} autoComplete="street-address" placeholder="House, street, area, landmark" value={form.address} onChange={e => set('address', e.target.value)} />)}
       <div className="form-row">
         {field('appliance', 'Appliance', (
@@ -194,6 +195,12 @@ export default function BookForm() {
         )}
         {errors.slot && <p className="err" id="e-slot">{errors.slot}</p>}
       </fieldset>
+
+      {form.date && form.slot && (
+        <div className="notice" aria-live="polite">
+          <strong>Your booking:</strong> {form.service || 'Service visit'} on {form.date}, {slotLabel(form.slot)}.
+        </div>
+      )}
 
       {/* Honeypot: hidden from people, filled by bots */}
       <div className="hp" aria-hidden="true">

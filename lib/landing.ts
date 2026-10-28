@@ -56,7 +56,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Do you service all brands?', a: 'Yes. Daikin, Voltas, LG, Samsung, Blue Star, Hitachi, Lloyd, Carrier and other major brands, including inverter models.' },
     ],
     related: ['ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-amc-vadodara', 'premium-ac-service-vadodara', 'refrigerator-repair-vadodara', 'washing-machine-repair-vadodara'],
-    guides: ['how-often-service-ac', 'ac-service-cost-vadodara'],
+    guides: ['how-often-service-ac', 'ac-service-cost-vadodara', 'clean-ac-filter-at-home', 'ac-bad-smell'],
   },
   {
     slug: 'ac-repair-vadodara',
@@ -87,7 +87,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Is there a warranty on AC repair?', a: 'Yes, all our repairs carry a 90 day warranty.' },
     ],
     related: ['fast-ac-repair-vadodara', 'ac-gas-filling-vadodara', 'ac-service-vadodara', 'central-ac-service-vadodara', 'refrigerator-repair-vadodara', 'washing-machine-repair-vadodara'],
-    guides: ['ac-not-cooling', 'ac-water-leaking', 'ac-service-cost-vadodara'],
+    guides: ['ac-not-cooling', 'ac-water-leaking', 'ac-service-cost-vadodara', 'ac-blowing-hot-air', 'ac-noise-when-starting'],
   },
   {
     slug: 'ac-gas-filling-vadodara',
@@ -146,7 +146,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Can you move my AC to a new house?', a: 'Yes. We uninstall it, and reinstall it at your new home in Vadodara with a leak check.' },
     ],
     related: ['ac-service-vadodara', 'ac-gas-filling-vadodara', 'central-ac-service-vadodara'],
-    guides: ['ac-service-cost-vadodara', 'how-often-service-ac', 'inverter-vs-non-inverter-ac'],
+    guides: ['ac-service-cost-vadodara', 'how-often-service-ac', 'inverter-vs-non-inverter-ac', 'ac-tonnage-for-bedroom'],
   },
   {
     slug: 'premium-ac-service-vadodara',
@@ -204,7 +204,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'Is there an extra charge for emergency visits?', a: 'Any charge is told to you on the phone before the technician leaves.' },
     ],
     related: ['ac-repair-vadodara', 'ac-gas-filling-vadodara', 'central-ac-service-vadodara'],
-    guides: ['ac-not-cooling', 'ac-water-leaking'],
+    guides: ['ac-not-cooling', 'ac-water-leaking', 'ac-blowing-hot-air'],
   },
   {
     slug: 'ac-amc-vadodara',
@@ -270,7 +270,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: 'How much does fridge repair cost in Vadodara?', a: 'Fridge repair starts from ₹400. Gas filling starts from ₹2,500. You get the full price before any work.' },
     ],
     related: ['washing-machine-repair-vadodara', 'ac-repair-vadodara'],
-    guides: ['fridge-not-cooling'],
+    guides: ['fridge-not-cooling', 'fridge-water-leaking'],
   },
   {
     slug: 'washing-machine-repair-vadodara',

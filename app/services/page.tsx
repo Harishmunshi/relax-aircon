@@ -30,6 +30,9 @@ export default function ServicesPage() {
         </p>
         <ServicesPreview />
         <PopularServices />
+        <p className="muted" style={{ marginTop: 20 }}>
+          Running an office, clinic, hotel or factory? See our <Link href="/commercial-ac-amc-vadodara">commercial AC service and AMC</Link>.
+        </p>
         <div className="two-col" style={{ marginTop: 48 }}>
           <div>
             <h2>How pricing works</h2>

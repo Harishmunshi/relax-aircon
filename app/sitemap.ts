@@ -11,6 +11,8 @@ const pages: { path: string; priority: number; changeFrequency: 'weekly' | 'mont
   { path: '/book', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/contact', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/about', priority: 0.6, changeFrequency: 'yearly' },
+  { path: '/commercial-ac-amc-vadodara', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/careers', priority: 0.5, changeFrequency: 'monthly' },
   { path: '/privacy', priority: 0.2, changeFrequency: 'yearly' },
   { path: '/terms', priority: 0.2, changeFrequency: 'yearly' },
 ]

@@ -26,6 +26,7 @@ export default function Footer() {
                 {LANDING_PAGES.map(p => (
                   <li key={p.slug}><Link href={`/${p.slug}`}>{p.label} Vadodara</Link></li>
                 ))}
+                <li><Link href="/commercial-ac-amc-vadodara">Commercial AC and AMC</Link></li>
                 <li><Link href="/services">All services and prices</Link></li>
               </ul>
             </div>
@@ -59,6 +60,8 @@ export default function Footer() {
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} Relax Aircon, Vadodara</span>
             <span>
+              <Link href="/careers">Join our team</Link>
+              {' · '}
               <Link href="/guides">AC help guides</Link>
               {' · '}
               <Link href="/privacy">Privacy policy</Link>

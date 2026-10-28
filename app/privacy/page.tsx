@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 }
 
-const UPDATED = '26 October 2026'
+const UPDATED = '28 October 2026'
 
 export default function PrivacyPage() {
   return (
@@ -25,6 +25,9 @@ export default function PrivacyPage() {
         <h2>What we collect</h2>
         <ul>
           <li>Details you give us to book a visit: your name, mobile number, address, the appliance and the problem, and your preferred date and time.</li>
+          <li>If you apply for a job on our Join our team page: your name, mobile number, area, role, experience and any message you write.</li>
+          <li>If you request a commercial quote: your company, contact name, mobile number, email and the details you give.</li>
+          <li>If you give an email address when booking: it is used once to send your confirmation and is not stored.</li>
           <li>Messages and photos you send us on WhatsApp or by phone.</li>
           <li>Basic technical data recorded by our hosting provider when you visit the site, such as IP address, browser type and pages requested. This is used for security and to keep the site running.</li>
         </ul>

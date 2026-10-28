@@ -15,9 +15,10 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  // Login/logout and the two customer booking endpoints are public. Matched exactly so that any
-  // future /api/bookings/* admin route stays behind the staff login.
-  if (pathname.startsWith('/api/auth/') || pathname === '/api/bookings' || pathname === '/api/bookings/slots') {
+  // Login/logout and the customer-facing form endpoints are public. Matched exactly so that any
+  // other route stays behind the staff login.
+  const PUBLIC_API = ['/api/bookings', '/api/bookings/slots', '/api/applications', '/api/quotes']
+  if (pathname.startsWith('/api/auth/') || PUBLIC_API.includes(pathname)) {
     return NextResponse.next()
   }
 
@@ -37,7 +38,8 @@ export async function middleware(req: NextRequest) {
   }
 
   // Technicians only see their own job list. Everything else (staff records, admin) is admin-only.
-  if (session.role !== 'admin' && !pathname.startsWith('/dashboard/technician')) {
+  const techAllowed = pathname.startsWith('/dashboard/technician') || pathname.startsWith('/api/technician/')
+  if (session.role !== 'admin' && !techAllowed) {
     if (isApi) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     return NextResponse.redirect(new URL(home, req.url))
   }

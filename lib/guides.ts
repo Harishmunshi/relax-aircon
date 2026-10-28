@@ -327,6 +327,223 @@ export const GUIDES: Guide[] = [
     services: ['ac-gas-filling-vadodara', 'ac-repair-vadodara', 'fast-ac-repair-vadodara'],
     published: '2026-10-26',
   },
+
+  {
+    slug: 'ac-blowing-hot-air',
+    title: 'AC Blowing Hot Air: Causes and Fixes',
+    description: 'AC blowing warm or hot air instead of cold? The common causes, quick checks you can do at home, and when to call a technician in Vadodara.',
+    h1: 'AC blowing hot air? Causes and what to do',
+    intro: 'When an AC runs but blows warm air, the fault is usually one of a few things. Some take two minutes to check; others need a technician with the right tools.',
+    sections: [
+      {
+        heading: 'Check these first',
+        list: [
+          'Remote: confirm the mode is Cool, not Fan, Dry or Auto, and the set temperature is below the room temperature.',
+          'Filters: a clogged filter can stop cold air getting through. Wash it if it is grey with dust.',
+          'Outdoor unit: make sure the fan is spinning and nothing blocks the airflow around it.',
+          'Power: if the outdoor unit is silent while the indoor fan runs, the compressor is not starting.',
+        ],
+      },
+      {
+        heading: 'Common causes',
+        list: [
+          'Low refrigerant gas from a leak. Needs the leak found and fixed before gas filling.',
+          'Compressor not starting because of a faulty capacitor or relay.',
+          'Dirty outdoor coil, which stops the AC from getting rid of heat.',
+          'Faulty sensor or control board, especially on inverter ACs.',
+          'Reversing valve stuck in heating mode on a heat and cool model.',
+        ],
+      },
+      {
+        heading: 'When to call a technician',
+        paragraphs: [
+          'If the filters are clean, the mode and temperature are right and the air is still warm, switch the AC off and call. Running it for long with a fault can damage the compressor. Our AC repair in Vadodara starts from ₹350 and gas filling from ₹2,500, with the price told before any work.',
+        ],
+      },
+    ],
+    cta: { href: '/ac-repair-vadodara', label: 'Book AC repair in Vadodara' },
+    services: ['ac-repair-vadodara', 'ac-gas-filling-vadodara', 'fast-ac-repair-vadodara'],
+    published: '2026-10-28',
+  },
+  {
+    slug: 'ac-noise-when-starting',
+    title: 'AC Making Noise: Causes and What to Do',
+    description: 'Split AC making a loud, rattling, buzzing or clicking noise? What each sound usually means and when it needs a technician.',
+    h1: 'AC making noise? What the sound usually means',
+    intro: 'Some noise is normal, like a soft click when the AC starts or the sound of air. A new loud sound is a warning worth checking early.',
+    sections: [
+      {
+        heading: 'What common sounds can mean',
+        list: [
+          'Rattling or vibration: loose panel, loose outdoor unit stand or a loose fan blade.',
+          'Buzzing from the outdoor unit: a weak capacitor or a compressor struggling to start.',
+          'Grinding or squealing: worn fan motor bearings.',
+          'Hissing or bubbling: possible gas leak, or refrigerant moving through the pipes.',
+          'Dripping or gurgling: water draining, or a partly blocked drain pipe.',
+          'Loud click and then silence: the outdoor unit is failing to start.',
+        ],
+      },
+      {
+        heading: 'What you can check',
+        list: [
+          'Look for objects, leaves or a loose cover near the outdoor unit.',
+          'Check the outdoor unit stand is firm and the unit is level.',
+          'Switch the AC off if the sound is grinding, buzzing or you smell burning.',
+        ],
+      },
+      {
+        heading: 'When to call a technician',
+        paragraphs: [
+          'Call if a loud noise continues for more than a few minutes, gets worse or comes with weak cooling. Do not open the panels yourself. Our AC repair in Vadodara starts from ₹350, and you are told the full price before work.',
+        ],
+      },
+    ],
+    cta: { href: '/ac-repair-vadodara', label: 'Book AC repair in Vadodara' },
+    services: ['ac-repair-vadodara', 'ac-service-vadodara', 'fast-ac-repair-vadodara'],
+    published: '2026-10-28',
+  },
+  {
+    slug: 'clean-ac-filter-at-home',
+    title: 'How to Clean AC Filters at Home',
+    description: 'Step-by-step guide to cleaning split AC filters yourself, how often to do it, and when you need a full professional service.',
+    h1: 'How to clean your AC filters at home',
+    intro: 'Clean filters let air flow freely, so the AC cools better and uses less electricity. Cleaning them takes about 10 minutes and needs no tools.',
+    sections: [
+      {
+        heading: 'Steps',
+        list: [
+          'Switch the AC off and unplug it or turn it off at the switch.',
+          'Open the front panel of the indoor unit and lift out the mesh filters gently.',
+          'Tap off loose dust, then rinse under running water. Use a soft brush for stuck dust.',
+          'Do not use hot water or harsh chemicals.',
+          'Dry the filters fully in the shade before putting them back.',
+          'Refit the filters, close the panel and switch the AC on.',
+        ],
+      },
+      {
+        heading: 'How often',
+        paragraphs: [
+          'In Vadodara, wash the filters about every two weeks in summer, and more often if the AC runs all day or the house is near a busy road or construction.',
+        ],
+      },
+      {
+        heading: 'What filters cannot do',
+        paragraphs: [
+          'Filter cleaning does not clean the indoor coil, the drain tray or the outdoor unit. If the AC still cools poorly, smells or leaks after cleaning the filters, it needs a full service. Our AC service in Vadodara starts from ₹350.',
+        ],
+      },
+    ],
+    cta: { href: '/ac-service-vadodara', label: 'Book AC service in Vadodara' },
+    services: ['ac-service-vadodara', 'ac-amc-vadodara'],
+    published: '2026-10-28',
+  },
+  {
+    slug: 'ac-bad-smell',
+    title: 'AC Smell Bad? Causes and Fixes',
+    description: 'Musty, sour or burning smell from your AC? What causes each smell, what is safe to try at home, and when to switch off and call.',
+    h1: 'AC smells bad? Causes and what to do',
+    intro: 'A smell from the AC usually means moisture, dust or a fault. A musty smell is common after the monsoon. A burning smell is different and needs attention at once.',
+    sections: [
+      {
+        heading: 'What the smell can mean',
+        list: [
+          'Musty or damp: mould or bacteria on a wet filter, coil or drain tray.',
+          'Sour or like dirty socks: dust and moisture on the indoor coil.',
+          'Like drains: a blocked drain pipe holding water.',
+          'Burning or electrical: overheating wiring or a motor fault. Switch off at once.',
+        ],
+      },
+      {
+        heading: 'What you can safely try',
+        list: [
+          'Wash and fully dry the filters.',
+          'Run the AC in Fan mode for 20 to 30 minutes after use, to dry the inside.',
+          'Keep the room ventilated for a while after switching the AC on.',
+        ],
+      },
+      {
+        heading: 'When to call a technician',
+        paragraphs: [
+          'If the smell comes back after cleaning the filters, a technician should clean the coil and drain. If you smell burning, switch the AC off at the wall and call. Our AC service in Vadodara starts from ₹350.',
+        ],
+      },
+    ],
+    cta: { href: '/ac-service-vadodara', label: 'Book AC service in Vadodara' },
+    services: ['ac-service-vadodara', 'ac-repair-vadodara', 'fast-ac-repair-vadodara'],
+    published: '2026-10-28',
+  },
+  {
+    slug: 'ac-tonnage-for-bedroom',
+    title: '1 Ton vs 1.5 Ton AC for a Bedroom',
+    description: 'How to choose between a 1 ton, 1.5 ton and 2 ton AC by room size, sun exposure and floor, with a simple rule of thumb for Vadodara homes.',
+    h1: '1 ton or 1.5 ton AC: which suits your room?',
+    intro: 'An AC that is too small runs flat out and never cools the room. One that is too big switches on and off too often. A good starting point is the size of the room.',
+    sections: [
+      {
+        heading: 'Rule of thumb by room size',
+        list: [
+          'Up to about 120 sq ft: 1 ton.',
+          'About 120 to 180 sq ft: 1.5 ton.',
+          'About 180 to 250 sq ft: 2 ton.',
+          'Larger rooms, halls and shops: 2 ton or more, or more than one unit.',
+        ],
+      },
+      {
+        heading: 'Go one size up if',
+        list: [
+          'The room is on the top floor or has a roof directly above it.',
+          'It has big windows facing the afternoon sun.',
+          'Many people use the room, or it has heat-producing appliances.',
+        ],
+      },
+      {
+        heading: 'Installation matters too',
+        paragraphs: [
+          'A correctly sized AC still cools badly if the pipe run is too long or the unit is poorly placed. We install split and window ACs from ₹1,200 and can advise on size and placement before you buy. These are guides, not exact calculations, so ask a technician if the room is unusual.',
+        ],
+      },
+    ],
+    cta: { href: '/ac-installation-vadodara', label: 'AC installation in Vadodara' },
+    services: ['ac-installation-vadodara', 'ac-service-vadodara'],
+    published: '2026-10-28',
+  },
+  {
+    slug: 'fridge-water-leaking',
+    title: 'Fridge Leaking Water: Causes and Fixes',
+    description: 'Water under or inside your refrigerator? The common causes, what to check at home, and when to call a technician in Vadodara.',
+    h1: 'Fridge leaking water? Causes and what to check',
+    intro: 'Water around a fridge is usually a blocked defrost drain or a loose water connection. Both are simple for a technician to fix, and some checks you can do yourself.',
+    sections: [
+      {
+        heading: 'Common causes',
+        list: [
+          'Blocked defrost drain, so melted frost runs onto the floor or the shelf.',
+          'Drain pan under the fridge overflowing or cracked.',
+          'Water inlet line or filter (on models with a water dispenser) loose or leaking.',
+          'Door seal not closing, causing extra frost and then extra water.',
+          'Fridge not level, so water does not drain to the pan.',
+        ],
+      },
+      {
+        heading: 'What you can check',
+        list: [
+          'Switch off and unplug the fridge before touching anything at the back.',
+          'Check that the door closes fully and the rubber seal is not torn.',
+          'Look for ice build-up at the back of the freezer, a sign the drain is blocked.',
+          'Make sure the fridge is level.',
+        ],
+      },
+      {
+        heading: 'When to call a technician',
+        paragraphs: [
+          'If the leak returns after you clear obvious causes, or there is a lot of ice, a technician should clear the drain and check the defrost system. Our fridge repair in Vadodara starts from ₹400, and you are told the full price before work.',
+        ],
+      },
+    ],
+    cta: { href: '/refrigerator-repair-vadodara', label: 'Book fridge repair in Vadodara' },
+    services: ['refrigerator-repair-vadodara'],
+    published: '2026-10-28',
+  },
 ]
 
 export const guideBySlug = (slug: string) => GUIDES.find(g => g.slug === slug)
