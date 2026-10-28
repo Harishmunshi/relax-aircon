@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import MobileContactBar from '@/components/MobileContactBar'
 import {
-  SITE_URL, BUSINESS_NAME, OWNER, FOUNDED, PHONE_TEL, HOURS, AREAS, SERVICES,
+  SITE_URL, BUSINESS_NAME, OWNER, FOUNDED, PHONE_TEL, HOURS, AREAS, SERVICES, GOOGLE_PROFILE_URL,
 } from '@/lib/site'
 
 const sans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-sans', display: 'swap' })
@@ -50,6 +50,7 @@ const schema = {
   priceRange: '₹₹',
   image: `${SITE_URL}/opengraph-image`,
   address: { '@type': 'PostalAddress', addressLocality: 'Vadodara', addressRegion: 'Gujarat', addressCountry: 'IN' },
+  sameAs: [GOOGLE_PROFILE_URL],
   areaServed: [{ '@type': 'City', name: 'Vadodara' }, ...AREAS.map(a => ({ '@type': 'Place', name: `${a}, Vadodara` }))],
   openingHoursSpecification: HOURS.map(h => ({
     '@type': 'OpeningHoursSpecification', dayOfWeek: h.schemaDays, opens: h.opens, closes: h.closes,

@@ -13,7 +13,9 @@ export function whatsappLink(message = 'Hi Relax Aircon, I need service in Vadod
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 }
 
-export const MAPS_LINK = 'https://www.google.com/maps/search/?api=1&query=Relax+Aircon+Vadodara'
+/** Relax Aircon's Google Business Profile (shared by the owner). */
+export const GOOGLE_PROFILE_URL = 'https://share.google/sgRAGQ6CwCuDaiGQV'
+export const MAPS_LINK = GOOGLE_PROFILE_URL
 
 export const HOURS = [
   { days: 'Monday to Saturday', time: '8:00 AM to 10:00 PM', schemaDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '08:00', closes: '22:00' },

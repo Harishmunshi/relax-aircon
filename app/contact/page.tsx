@@ -31,7 +31,7 @@ export default function ContactPage() {
           <a href={MAPS_LINK} target="_blank" rel="noopener noreferrer" className="panel contact-card">
             <span className="label">Location</span>
             <div className="value">Vadodara, Gujarat</div>
-            <div className="muted small">We come to you</div>
+            <div className="muted small">We come to you. See our Google profile and reviews</div>
           </a>
         </div>
 

@@ -51,7 +51,7 @@ export default function Footer() {
               <ul>
                 <li><a href={`tel:${PHONE_TEL}`}>Call {PHONE_DISPLAY}</a></li>
                 <li><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-                <li><a href={MAPS_LINK} target="_blank" rel="noopener noreferrer">Vadodara, Gujarat</a></li>
+                <li><a href={MAPS_LINK} target="_blank" rel="noopener noreferrer">Find us on Google</a></li>
                 {HOURS.map(h => <li key={h.days} className="muted small">{h.days}: {h.time}</li>)}
               </ul>
             </div>
