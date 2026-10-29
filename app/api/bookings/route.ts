@@ -46,6 +46,10 @@ export async function POST(req: NextRequest) {
 
   const phone = normalizePhone(phoneRaw)
   try {
+    const blocked = await sql`SELECT 1 FROM blocked_slots WHERE block_date = ${date as string} AND (slot IS NULL OR slot = ${slot}) LIMIT 1`
+    if (blocked.length > 0) {
+      return NextResponse.json({ error: 'That slot is not available. Please choose another.', fields: { slot: 'Not available' } }, { status: 409 })
+    }
     const rows = await sql`
       INSERT INTO bookings (name, phone, address, appliance, service, problem, booking_date, slot)
       VALUES (${name}, ${phone}, ${address}, ${appliance}, ${service}, ${problem}, ${date as string}, ${slot})

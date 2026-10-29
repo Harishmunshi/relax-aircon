@@ -14,3 +14,13 @@ CREATE TABLE IF NOT EXISTS bookings (
 );
 -- One active booking per date and slot: the database refuses double bookings.
 CREATE UNIQUE INDEX IF NOT EXISTS bookings_one_per_slot ON bookings (booking_date, slot) WHERE status <> 'cancelled';
+
+-- Days and slots the owner has blocked (days off, jobs taken by phone). slot NULL blocks the whole day.
+CREATE TABLE IF NOT EXISTS blocked_slots (
+  id         BIGSERIAL PRIMARY KEY,
+  block_date DATE NOT NULL,
+  slot       TEXT CHECK (slot IS NULL OR slot IN ('9-11','11-13','13-15','15-17','17-19','19-21')),
+  reason     TEXT CHECK (reason IS NULL OR char_length(reason) <= 100),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE UNIQUE INDEX IF NOT EXISTS blocked_slots_unique ON blocked_slots (block_date, COALESCE(slot, ''));

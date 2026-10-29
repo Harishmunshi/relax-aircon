@@ -14,13 +14,19 @@ export async function GET(req: NextRequest) {
 
   try {
     const rows = await sql`SELECT slot FROM bookings WHERE booking_date = ${date} AND status <> 'cancelled'`
+    const blockRows = await sql`SELECT slot FROM blocked_slots WHERE block_date = ${date}`
     const booked = new Set(rows.map(r => r.slot as string))
-    const slots = SLOTS.map(s => ({
-      id: s.id,
-      label: s.label,
-      available: !booked.has(s.id) && slotBookable(date, s.id),
-      reason: booked.has(s.id) ? 'booked' : slotBookable(date, s.id) ? null : 'unavailable',
-    }))
+    const dayBlocked = blockRows.some(r => r.slot === null)
+    const blocked = new Set(blockRows.map(r => r.slot as string | null))
+    const slots = SLOTS.map(s => {
+      const off = dayBlocked || blocked.has(s.id)
+      return {
+        id: s.id,
+        label: s.label,
+        available: !booked.has(s.id) && !off && slotBookable(date, s.id),
+        reason: booked.has(s.id) ? 'booked' : off || !slotBookable(date, s.id) ? 'unavailable' : null,
+      }
+    })
     return NextResponse.json({ date, slots }, { headers: { 'Cache-Control': 'no-store' } })
   } catch (e) {
     console.error('slots error', e)

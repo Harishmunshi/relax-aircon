@@ -1,5 +1,5 @@
 import 'server-only'
-import { slotLabel } from '@/lib/booking'
+import { SLOTS, slotLabel } from '@/lib/booking'
 import { SITE_URL, PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 
 export type BookingRecord = {
@@ -71,19 +71,38 @@ function card(kicker: string, headline: string, rows: Row[], buttons: string, fo
 const plain = (lines: string[], rows: Row[]) =>
   [...lines, ...rows.filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`)].join('\n')
 
+/** One-tap "add to Google Calendar" link for a booking (IST, floating local time). */
+function calendarUrl(b: BookingRecord) {
+  const slot = SLOTS.find(s => s.id === b.slot)
+  const day = b.booking_date.replace(/-/g, '')
+  const hh = (h: number) => String(h).padStart(2, '0')
+  const start = slot?.startHour ?? 9
+  const details = [`Phone: ${b.phone}`, b.service && `Service: ${b.service}`, b.appliance && `Appliance: ${b.appliance}`, b.problem && `Problem: ${b.problem}`].filter(Boolean).join('\n')
+  const q = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: `Relax Aircon: ${b.name}${b.service ? ` (${b.service})` : ''}`,
+    dates: `${day}T${hh(start)}0000/${day}T${hh(start + 2)}0000`,
+    ctz: 'Asia/Kolkata',
+    details,
+    location: `${b.address}, Vadodara`,
+  })
+  return `https://calendar.google.com/calendar/render?${q}`
+}
+
 /** Alert to the owner about a new booking. */
 export async function emailOwner(b: BookingRecord) {
   const to = ownerRecipients()
   if (to.length === 0) return false
   const when = `${b.booking_date}, ${slotLabel(b.slot)}`
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${b.address}, Vadodara`)}`
+  const calUrl = calendarUrl(b)
   const rows: Row[] = [['Customer', b.name], ['Phone', b.phone], ['Address', b.address], ['Appliance', b.appliance], ['Service', b.service], ['Problem', b.problem]]
   const html = card(
     `New booking #${b.id}`, when, rows,
-    button(`tel:+91${b.phone}`, 'Call customer', '#1c4e89') + button(`https://wa.me/91${b.phone}`, 'WhatsApp customer', '#1f7a4d') + button(mapUrl, 'Open in Maps', '#4b5966'),
+    button(`tel:+91${b.phone}`, 'Call customer', '#1c4e89') + button(`https://wa.me/91${b.phone}`, 'WhatsApp customer', '#1f7a4d') + button(mapUrl, 'Open in Maps', '#4b5966') + button(calUrl, 'Add to Google Calendar', '#8a5a00'),
     `Confirm or cancel it in the <a href="${SITE_URL}/dashboard/admin">bookings dashboard</a>.`,
   )
-  const text = plain([`New booking #${b.id}: ${when}`], rows) + `\nCall: +91${b.phone}\nWhatsApp: https://wa.me/91${b.phone}\nMap: ${mapUrl}\nDashboard: ${SITE_URL}/dashboard/admin`
+  const text = plain([`New booking #${b.id}: ${when}`], rows) + `\nCall: +91${b.phone}\nWhatsApp: https://wa.me/91${b.phone}\nMap: ${mapUrl}\nAdd to Google Calendar: ${calUrl}\nDashboard: ${SITE_URL}/dashboard/admin`
   return send(to, `New booking: ${b.name}, ${when}`, html, text)
 }
 
