@@ -34,6 +34,7 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: 'Relax Aircon, Vadodara', description },
   robots: { index: true, follow: true },
   formatDetection: { telephone: true },
+  other: { 'google-adsense-account': 'ca-pub-8760234630692712' },
 }
 
 export const viewport: Viewport = { themeColor: '#f6f4ef', width: 'device-width', initialScale: 1 }
