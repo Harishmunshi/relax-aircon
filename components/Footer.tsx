@@ -4,7 +4,7 @@ import { LANDING_PAGES } from '@/lib/landing'
 import { GUIDES } from '@/lib/guides'
 import { AREA_PAGES } from '@/lib/areas'
 import {
-  HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, FOUNDED, MAPS_LINK, whatsappLink,
+  HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, FOUNDED, MAPS_LINK, GOOGLE_REVIEW_URL, whatsappLink,
 } from '@/lib/site'
 
 export default function Footer() {
@@ -53,6 +53,7 @@ export default function Footer() {
                 <li><a href={`tel:${PHONE_TEL}`}>Call {PHONE_DISPLAY}</a></li>
                 <li><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
                 <li><a href={MAPS_LINK} target="_blank" rel="noopener noreferrer">Find us on Google</a></li>
+                <li><a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Leave a Google review</a></li>
                 {HOURS.map(h => <li key={h.days} className="muted small">{h.days}: {h.time}</li>)}
               </ul>
             </div>

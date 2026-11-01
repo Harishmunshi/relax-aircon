@@ -49,6 +49,7 @@ const schema = {
   foundingDate: String(FOUNDED),
   priceRange: '₹₹',
   image: `${SITE_URL}/opengraph-image`,
+  logo: `${SITE_URL}/logo`,
   address: { '@type': 'PostalAddress', addressLocality: 'Vadodara', addressRegion: 'Gujarat', addressCountry: 'IN' },
   sameAs: [GOOGLE_PROFILE_URL],
   areaServed: [{ '@type': 'City', name: 'Vadodara' }, ...AREAS.map(a => ({ '@type': 'Place', name: `${a}, Vadodara` }))],

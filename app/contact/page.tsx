@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AREA_PAGES } from '@/lib/areas'
-import { HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, MAPS_LINK, whatsappLink } from '@/lib/site'
+import { HOURS, PHONE_DISPLAY, PHONE_TEL, OWNER, MAPS_LINK, GOOGLE_REVIEW_URL, whatsappLink } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Contact Relax Aircon, Vadodara',
@@ -34,6 +34,9 @@ export default function ContactPage() {
             <div className="muted small">We come to you. See our Google profile and reviews</div>
           </a>
         </div>
+        <p style={{ marginBottom: 40 }}>
+          Happy with our service? <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">Leave a Google review</a>. It helps other people in Vadodara find us.
+        </p>
 
         <div className="two-col" style={{ marginBottom: 40 }}>
           <div>

@@ -16,6 +16,8 @@ export function whatsappLink(message = 'Hi Relax Aircon, I need service in Vadod
 /** Relax Aircon's Google Business Profile (shared by the owner). */
 export const GOOGLE_PROFILE_URL = 'https://share.google/sgRAGQ6CwCuDaiGQV'
 export const MAPS_LINK = GOOGLE_PROFILE_URL
+/** Opens the Google review box for the business. */
+export const GOOGLE_REVIEW_URL = 'https://g.page/r/Cbfi9D5Hobi8EBM/review'
 
 export const HOURS = [
   { days: 'Monday to Saturday', time: '8:00 AM to 10:00 PM', schemaDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '08:00', closes: '22:00' },
