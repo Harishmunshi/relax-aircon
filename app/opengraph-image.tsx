@@ -9,7 +9,7 @@ export const contentType = 'image/png'
 export default function OpengraphImage() {
   return new ImageResponse(
     (
-      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#f6f4ef', color: '#15212c', padding: 72, fontFamily: 'Georgia, serif' }}>
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#dcecfb', color: '#0f2238', padding: 72, fontFamily: 'sans-serif' }}>
         <div style={{ fontSize: 36, fontWeight: 700 }}>Relax Aircon</div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.1 }}>AC, fridge and washing machine repair in Vadodara</div>

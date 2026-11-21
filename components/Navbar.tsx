@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 import { isStaffPath } from '@/components/PublicOnly'
+import Logo from '@/components/Logo'
 
 const links = [
   { href: '/services', label: 'Services' },
@@ -20,7 +21,7 @@ export default function Navbar() {
   return (
     <header className="site-header">
       <div className="wrap">
-        <Link href="/" className="brand">Relax Aircon</Link>
+        <Link href="/" className="brand"><Logo size={30} />Relax Aircon</Link>
         <button
           type="button"
           className="nav-toggle"

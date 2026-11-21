@@ -16,6 +16,14 @@ export function whatsappLink(message = 'Hi Relax Aircon, I need service in Vadod
 /** Relax Aircon's Google Business Profile (shared by the owner). */
 export const GOOGLE_PROFILE_URL = 'https://share.google/sgRAGQ6CwCuDaiGQV'
 export const MAPS_LINK = GOOGLE_PROFILE_URL
+/** Google rating shown on the homepage. Update these when the profile changes. */
+export const GOOGLE_RATING = '5.0'
+export const GOOGLE_REVIEW_COUNT = 3
+export const FEATURED_REVIEWS = [
+  { quote: 'Their technicians arrived right on time. They provided excellent service at a very reasonable price.', name: 'Mohammad Yusuf', detail: 'AC servicing' },
+  { quote: 'They resolved the problem within just 2 hours! The service was excellent, the response was quick, and the charges were very reasonable.', name: 'Rabin Mukhiya', detail: 'South Samarth Restaurant, water cooler gas leak' },
+]
+
 /** Opens the Google review box for the business. */
 export const GOOGLE_REVIEW_URL = 'https://g.page/r/Cbfi9D5Hobi8EBM/review'
 

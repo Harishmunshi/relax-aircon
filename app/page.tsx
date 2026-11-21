@@ -4,6 +4,8 @@ import Hero from '@/components/Hero'
 import ServicesPreview from '@/components/ServicesPreview'
 import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/site'
 import PopularServices from '@/components/PopularServices'
+import TrustStrip from '@/components/TrustStrip'
+import ReviewsStrip from '@/components/ReviewsStrip'
 import { AREA_PAGES } from '@/lib/areas'
 import { BRAND_PAGES } from '@/lib/brands'
 
@@ -23,6 +25,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <TrustStrip />
 
       <section className="section" aria-labelledby="services-heading">
         <div className="wrap">
@@ -48,7 +51,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="coverage-heading">
+      <ReviewsStrip />
+
+      <section className="section section-alt" aria-labelledby="coverage-heading">
         <div className="wrap two-col">
           <div>
             <h2 id="coverage-heading">Areas we cover in Vadodara</h2>

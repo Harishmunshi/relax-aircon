@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Sans, Source_Serif_4 } from 'next/font/google'
+import { IBM_Plex_Sans, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -9,7 +9,7 @@ import {
 } from '@/lib/site'
 
 const sans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-sans', display: 'swap' })
-const serif = Source_Serif_4({ subsets: ['latin'], weight: ['600', '700'], variable: '--font-serif', display: 'swap' })
+const display = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['700', '800'], variable: '--font-display', display: 'swap' })
 
 const description =
   'AC service and repair at home in Vadodara: gas filling, installation, AMC, fridge and washing machine repair. Same-day visits. Call +91 70432 45355.'
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   other: { 'google-adsense-account': 'ca-pub-8760234630692712' },
 }
 
-export const viewport: Viewport = { themeColor: '#f6f4ef', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { themeColor: '#f1f7fd', width: 'device-width', initialScale: 1 }
 
 const schema = {
   '@context': 'https://schema.org',
@@ -63,7 +63,7 @@ const schema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="en-IN" className={`${sans.variable} ${display.variable}`}>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
