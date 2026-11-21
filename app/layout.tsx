@@ -22,14 +22,11 @@ export const metadata: Metadata = {
   },
   description,
   applicationName: BUSINESS_NAME,
-  alternates: { canonical: '/' },
+  // Canonical and og:url/title/description are set per page; sharing them here would point every page at the homepage.
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: SITE_URL,
     siteName: BUSINESS_NAME,
-    title: 'AC Service and Repair in Vadodara | Relax Aircon',
-    description,
   },
   twitter: { card: 'summary_large_image', title: 'Relax Aircon, Vadodara', description },
   robots: { index: true, follow: true },
