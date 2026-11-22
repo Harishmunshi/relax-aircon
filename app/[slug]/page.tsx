@@ -8,6 +8,8 @@ import { AREA_PAGES, areaBySlug } from '@/lib/areas'
 import { BRAND_PAGES, brandBySlug } from '@/lib/brands'
 import AreaView from '@/components/AreaView'
 import BrandView from '@/components/BrandView'
+import WorkPhotos from '@/components/WorkPhotos'
+import { PAGE_PHOTOS } from '@/lib/photos'
 
 export const dynamicParams = false
 
@@ -112,6 +114,13 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
             <ul className="plain-list">{page.problems.map(i => <li key={i}>{i}</li>)}</ul>
           </section>
         </div>
+
+        {PAGE_PHOTOS[page.slug] && (
+          <section style={{ marginTop: 56 }} aria-labelledby="lp-photos">
+            <h2 id="lp-photos">Our work</h2>
+            <WorkPhotos ids={PAGE_PHOTOS[page.slug]} sizes="(max-width: 720px) 100vw, 50vw" />
+          </section>
+        )}
 
         <section style={{ marginTop: 56 }} aria-labelledby="lp-faq">
           <h2 id="lp-faq">Questions about {page.label.toLowerCase()} in Vadodara</h2>

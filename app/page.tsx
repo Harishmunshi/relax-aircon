@@ -6,6 +6,8 @@ import { PHONE_DISPLAY, PHONE_TEL, whatsappLink } from '@/lib/site'
 import PopularServices from '@/components/PopularServices'
 import TrustStrip from '@/components/TrustStrip'
 import ReviewsStrip from '@/components/ReviewsStrip'
+import WorkPhotos from '@/components/WorkPhotos'
+import { HOME_GALLERY } from '@/lib/photos'
 import { AREA_PAGES } from '@/lib/areas'
 import { BRAND_PAGES } from '@/lib/brands'
 
@@ -51,9 +53,20 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section" aria-labelledby="work-heading">
+        <div className="wrap">
+          <span className="eyebrow">Our work</span>
+          <h2 id="work-heading">How we service your appliances</h2>
+          <p className="lead" style={{ marginBottom: 32 }}>
+            Careful cleaning, proper gas checks and honest repairs, done at your home.
+          </p>
+          <WorkPhotos ids={HOME_GALLERY} />
+        </div>
+      </section>
+
       <ReviewsStrip />
 
-      <section className="section section-alt" aria-labelledby="coverage-heading">
+      <section className="section" aria-labelledby="coverage-heading">
         <div className="wrap two-col">
           <div>
             <h2 id="coverage-heading">Areas we cover in Vadodara</h2>

@@ -3,7 +3,7 @@ import { FEATURED_REVIEWS, GOOGLE_RATING, GOOGLE_REVIEW_COUNT, GOOGLE_PROFILE_UR
 /** Real customer quotes from the Google Business Profile. */
 export default function ReviewsStrip() {
   return (
-    <section className="section" aria-labelledby="reviews-heading">
+    <section className="section section-alt" aria-labelledby="reviews-heading">
       <div className="wrap">
         <span className="eyebrow">What customers say</span>
         <h2 id="reviews-heading">Rated {GOOGLE_RATING} on Google</h2>

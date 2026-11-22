@@ -292,3 +292,12 @@ img { max-width: 100%; display: block; }
 .review figcaption strong { color: var(--ink); }
 @media (max-width: 900px) { .trust-strip ul { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 720px) { .review-grid { grid-template-columns: 1fr; } }
+
+/* Work photos */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.photo-grid[data-count='1'] { grid-template-columns: minmax(0, 560px); }
+.photo-grid[data-count='2'] { grid-template-columns: repeat(2, 1fr); }
+.photo { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(28, 78, 137, 0.06); }
+.photo img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.photo figcaption { padding: 10px 14px 12px; font-size: 0.9rem; color: var(--ink-2); }
+@media (max-width: 720px) { .photo-grid, .photo-grid[data-count='2'] { grid-template-columns: 1fr; } }
