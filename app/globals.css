@@ -301,3 +301,11 @@ img { max-width: 100%; display: block; }
 .photo img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .photo figcaption { padding: 10px 14px 12px; font-size: 0.9rem; color: var(--ink-2); }
 @media (max-width: 720px) { .photo-grid, .photo-grid[data-count='2'] { grid-template-columns: 1fr; } }
+
+/* Job video next to the reviews */
+.review-layout { display: grid; grid-template-columns: 1fr minmax(0, 280px); gap: 20px; align-items: start; }
+.review-layout .review-grid { grid-template-columns: 1fr; }
+.work-video { margin: 0; padding: 12px; max-width: 320px; }
+.work-video video { display: block; width: 100%; aspect-ratio: 478 / 850; max-height: 460px; object-fit: contain; background: #0f2238; border-radius: 10px; }
+.work-video figcaption { margin-top: 10px; font-size: 0.9rem; color: var(--ink-2); }
+@media (max-width: 900px) { .review-layout { grid-template-columns: 1fr; } .work-video { max-width: 320px; } }

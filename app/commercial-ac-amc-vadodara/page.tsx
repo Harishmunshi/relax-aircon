@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import WorkVideo from '@/components/WorkVideo'
 import EnquiryForm, { type FormField } from '@/components/EnquiryForm'
 import { SITE_URL, PHONE_DISPLAY, PHONE_TEL, BRANDS, priceOf, whatsappLink } from '@/lib/site'
 
@@ -106,6 +107,12 @@ export default function CommercialPage() {
             </ol>
           </section>
         </div>
+
+        <section style={{ marginTop: 56 }} aria-labelledby="recent-job">
+          <h2 id="recent-job">A recent commercial job</h2>
+          <p className="muted">A repair on a drinking water cooler at a Vadodara restaurant.</p>
+          <WorkVideo />
+        </section>
 
         <section style={{ marginTop: 56 }} aria-labelledby="faq">
           <h2 id="faq">Questions about commercial AC service</h2>
